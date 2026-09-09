@@ -1,0 +1,15 @@
+{
+  "runId": "timeout-mtu1bek6-5f2f",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:16.048Z",
+  "endedAt": "2026-09-09T11:48:18.874Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-timeout-mtu1bek6-5f2f",
+  "status": "success",
+  "outputs": {
+    "savingsBalance": 482355
+  },
+  "checkpointsPassed": 2
+}

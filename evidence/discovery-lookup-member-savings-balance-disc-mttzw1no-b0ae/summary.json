@@ -1,0 +1,10 @@
+{
+  "status": "discovery_success",
+  "capabilityId": "lookup-member-savings-balance",
+  "steps": 2,
+  "outputs": [
+    "savingsBalance"
+  ],
+  "verifiedByReplay": false,
+  "runId": "disc-mttzw1no-b0ae"
+}

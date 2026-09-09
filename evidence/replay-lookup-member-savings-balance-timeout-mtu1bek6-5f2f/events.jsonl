@@ -1,0 +1,14 @@
+{"ts":"t+0084","level":"info","msg":"Operator console: http://localhost:4600"}
+{"ts":"t+0085","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0086","level":"info","msg":"Replay start: lookup-member-savings-balance@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123"},"approval":"approved"}
+{"ts":"t+0087","level":"condition","msg":"Detected SESSION_TIMEOUT (escalate)","step":"s1","onDetect":"reauth"}
+{"ts":"t+0088","level":"warn","msg":"HANDOFF → human: SESSION_TIMEOUT: Session/auth expired mid-run. Reauth is a platform concern; hand off for re-authentication, then retry the step.","interventionId":"iv_000_d95f84","condition":"SESSION_TIMEOUT","detail":"open operator console to take control"}
+{"ts":"t+0089","level":"info","msg":"[scripted-operator] performing manual fix + resuming iv_000_d95f84"}
+{"ts":"t+0090","level":"error","msg":"[scripted-operator] manual fix failed","detail":"POLICY_BLOCKED: Route not allowlisted: /login (http://localhost:3100/login)"}
+{"ts":"t+0091","level":"info","msg":"HANDBACK ← human (scripted-operator)","interventionId":"iv_000_d95f84","capturedActions":1,"detail":"manual step performed in live session, then resumed"}
+{"ts":"t+0092","level":"info","msg":"Condition SESSION_TIMEOUT cleared after handoff; retrying step"}
+{"ts":"t+0093","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0094","level":"action","msg":"type s1 ✓","detail":"Enter the member number to search for"}
+{"ts":"t+0095","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0096","level":"action","msg":"click s2 ✓","detail":"Search for the member"}
+{"ts":"t+0097","level":"info","msg":"Replay success","outputs":{"savingsBalance":482355}}

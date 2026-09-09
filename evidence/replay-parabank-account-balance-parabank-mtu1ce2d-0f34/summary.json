@@ -1,0 +1,15 @@
+{
+  "runId": "parabank-mtu1ce2d-0f34",
+  "capabilityId": "parabank-account-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "parabank",
+  "startedAt": "2026-09-09T11:49:00.945Z",
+  "endedAt": "2026-09-09T11:49:04.415Z",
+  "stepsAttempted": 3,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-parabank-account-balance-parabank-mtu1ce2d-0f34",
+  "status": "success",
+  "outputs": {
+    "accountBalance": 30050
+  },
+  "checkpointsPassed": 2
+}

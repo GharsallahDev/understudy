@@ -1,0 +1,19 @@
+{
+  "runId": "drift-heal-mtu1c5sf-31b8",
+  "capabilityId": "open-member-subaccount",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:51.331Z",
+  "endedAt": "2026-09-09T11:49:00.836Z",
+  "stepsAttempted": 7,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-open-member-subaccount-drift-heal-mtu1c5sf-31b8",
+  "notes": [
+    "drift: step s3 resolved via css[4] (recorded primary was role) — capability should be reviewed/re-recorded",
+    "self-healed s6: \"button \"Continue to Review\"\" → \"button \"Proceed\"\" (The 'Proceed' button (e2) serves the same purpose as 'Continue to Review' to move to the next step of the sub-account creation process.)"
+  ],
+  "status": "success",
+  "outputs": {
+    "newAccountNumber": "100123-93"
+  },
+  "checkpointsPassed": 5
+}

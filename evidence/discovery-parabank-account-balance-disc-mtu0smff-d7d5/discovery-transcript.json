@@ -1,0 +1,155 @@
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "GOAL: Log in with the provided username and password. You will land on the Accounts Overview, which lists accounts and balances in a table. Find the row for the account whose number equals the \"accountId\" input, read that account's current Balance, and finish — returning it as an output named \"accountBalance\". The distinctive success text is \"Accounts Overview\".\n\nINPUTS AVAILABLE:\n  - username = [provided securely — set boundInput to this name; the system injects the value] (ParaBank login username)\n  - password = [provided securely — set boundInput to this name; the system injects the value] (ParaBank login password)\n  - accountId = 40650 (the account number to read the balance of)\n\nYou are on the entry screen. If the app requires signing in, do that first using the provided inputs, then complete the goal.\n\nURL: https://parabank.parasoft.com/parabank/index.htm\nTITLE: ParaBank | Welcome | Online Banking\nHTTP: 200\nTEXT: Experience the difference Solutions About Us Services Products Locations Admin Page home about contact Customer Login Username Password Forgot login info? Register ATM Services Withdraw Funds Transfer Funds Check Balances Make Deposits Online Services Bill Pay Account History Transfer Funds READ MORE LATEST NEWS 09/09/2026 ParaBank Is Now Re-Opened New! Online Bill Pay New! Online Account Transfers READ MORE Home| About Us| Services| Products| Locations| Forum| Site Map| Contact Us © Parasoft. All rights reserved. Visit us at: www.parasoft.com\n\nELEMENTS:\n  e0 link\n  e1 link\n  e2 link name=\"About Us\"\n  e3 link name=\"Services\"\n  e4 link name=\"Products\"\n  e5 link name=\"Locations\"\n  e6 link name=\"Admin Page\"\n  e7 link name=\"home\"\n  e8 link name=\"about\"\n  e9 link name=\"contact\"\n  e10 textbox\n  e11 textbox\n  e12 button name=\"Log In\" value=\"Log In\"\n  e13 link name=\"Forgot login info?\"\n  e14 link name=\"Register\"\n  e15 link name=\"Withdraw Funds\"\n  e16 link name=\"Transfer Funds\"\n  e17 link name=\"Check Balances\"\n  e18 link name=\"Make Deposits\"\n  e19 link name=\"Bill Pay\"\n  e20 link name=\"Account History\"\n  e21 link name=\"Transfer Funds\"\n  e22 link name=\"Read More\"\n  e23 link name=\"ParaBank Is Now Re-Opened\"\n  e24 link name=\"New! Online Bill Pay\"\n  e25 link name=\"New! Online Account Transfers\"\n  e26 link name=\"Read More\"\n  e27 link name=\"Home\"\n  e28 link name=\"About Us\"\n  e29 link name=\"Services\"\n  e30 link name=\"Products\"\n  e31 link name=\"Locations\"\n  e32 link name=\"Forum\"\n  e33 link name=\"Site Map\"\n  e34 link name=\"Contact Us\"\n  e35 link name=\"www.parasoft.com\""
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "boundInput": "username",
+            "text": "[provided securely]",
+            "intent": "Type the username into the login form",
+            "ref": "e10",
+            "sensitive": true
+          },
+          "id": "call_51946"
+        },
+        "thoughtSignature": "AY89a1+gO+R7f8pVnJpBpBIwQLf21WzqcGoN8dHGKi/xi5VoeYs7J92JMPIDbwYy0l3hxApkwImV96L8CD/RboPy5IYDFad+hrOODCfMz3Su9JgqmA4eTLRQGd1Jgv1fnPtH/4YrgCDGq0NtNkTVObBjAcPCUPyC4EsCqDMGK71XMJhpux5jMOqYtVbgkzX+HnZit5fvnDcKfWE1QH9jB/PXcU8vYwKYqIgSDcxPrK19DtEnVmwphDgHOe1az6eYboNnB5RgU0qEKmsegkjOzvMrB+GDHoW4GWZBMkKPrw/jkAEXZtNALiXpPFTIvO2Fud0/Vsxmh/hw7iHIkQMuajUPVR9TWw8XzgJstm0y8TtXjaIRoLzU3h/2VJHwwvVYRlCm9t3aRrkzE8CvPXMWlvoeXpnY1nmpDo+CG1ou+ZFd20YB1K2diLpyFyZx3kZb+ziBQFqnHoEE3ZcfBBGJkEh/W6nlXkya3c8KIqmxWH3eCegDQ7x/r/04XYgMwwatof095crHyiQ43roGW7ZeB/5hlWhpH9yndO/036B5wlTBCYuC6DYQr8n0MrpixgnmSQXpF9NN4skvGgoVWt/fPc0Yt8vQVAPQRJeraNGXg7wTtq8HGYVCICAS8+1zy2AI9OjJnn8sIjARma+ucODA1Johp5+7Df908SesIkDFLkIeYrJ/A7eDunKjLX6Zsc+2JcG0Bky5vD1qsWUWlQzfMAsXxy+s5YuGfoiEWdIY9iXI+dtDz0aU1IH8MEu9Fx2SyX/k5iMz8lAfL0w8k4UoCI6e41dDgH3eby9EON7vOsFtWvdkf/sKD743aFpcuFo="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: https://parabank.parasoft.com/parabank/index.htm\nTITLE: ParaBank | Welcome | Online Banking\nHTTP: 200\nTEXT: Experience the difference Solutions About Us Services Products Locations Admin Page home about contact Customer Login Username Password Forgot login info? Register ATM Services Withdraw Funds Transfer Funds Check Balances Make Deposits Online Services Bill Pay Account History Transfer Funds READ MORE LATEST NEWS 09/09/2026 ParaBank Is Now Re-Opened New! Online Bill Pay New! Online Account Transfers READ MORE Home| About Us| Services| Products| Locations| Forum| Site Map| Contact Us © Parasoft. All rights reserved. Visit us at: www.parasoft.com\n\nELEMENTS:\n  e0 link\n  e1 link\n  e2 link name=\"About Us\"\n  e3 link name=\"Services\"\n  e4 link name=\"Products\"\n  e5 link name=\"Locations\"\n  e6 link name=\"Admin Page\"\n  e7 link name=\"home\"\n  e8 link name=\"about\"\n  e9 link name=\"contact\"\n  e10 textbox value=\"john\"\n  e11 textbox\n  e12 button name=\"Log In\" value=\"Log In\"\n  e13 link name=\"Forgot login info?\"\n  e14 link name=\"Register\"\n  e15 link name=\"Withdraw Funds\"\n  e16 link name=\"Transfer Funds\"\n  e17 link name=\"Check Balances\"\n  e18 link name=\"Make Deposits\"\n  e19 link name=\"Bill Pay\"\n  e20 link name=\"Account History\"\n  e21 link name=\"Transfer Funds\"\n  e22 link name=\"Read More\"\n  e23 link name=\"ParaBank Is Now Re-Opened\"\n  e24 link name=\"New! Online Bill Pay\"\n  e25 link name=\"New! Online Account Transfers\"\n  e26 link name=\"Read More\"\n  e27 link name=\"Home\"\n  e28 link name=\"About Us\"\n  e29 link name=\"Services\"\n  e30 link name=\"Products\"\n  e31 link name=\"Locations\"\n  e32 link name=\"Forum\"\n  e33 link name=\"Site Map\"\n  e34 link name=\"Contact Us\"\n  e35 link name=\"www.parasoft.com\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "boundInput": "password",
+            "text": "[provided securely]",
+            "intent": "Type the password into the login form",
+            "ref": "e11",
+            "sensitive": true
+          },
+          "id": "call_62889"
+        },
+        "thoughtSignature": "AY89a19vUwapZ7eb/D3I6cSMj85nyi2+me96q9sOOjvhom3Lfzljq1sZoZW27lP0uW5EdW3dfN5waXnZpVQxAuaqQH+Fxxy+fAyTedYJe6Z2xJz9wgjzpkQB+/+LYgN9I5uvIYu5hHo1tME/vYIDjQ=="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: https://parabank.parasoft.com/parabank/index.htm\nTITLE: ParaBank | Welcome | Online Banking\nHTTP: 200\nTEXT: Experience the difference Solutions About Us Services Products Locations Admin Page home about contact Customer Login Username Password Forgot login info? Register ATM Services Withdraw Funds Transfer Funds Check Balances Make Deposits Online Services Bill Pay Account History Transfer Funds READ MORE LATEST NEWS 09/09/2026 ParaBank Is Now Re-Opened New! Online Bill Pay New! Online Account Transfers READ MORE Home| About Us| Services| Products| Locations| Forum| Site Map| Contact Us © Parasoft. All rights reserved. Visit us at: www.parasoft.com\n\nELEMENTS:\n  e0 link\n  e1 link\n  e2 link name=\"About Us\"\n  e3 link name=\"Services\"\n  e4 link name=\"Products\"\n  e5 link name=\"Locations\"\n  e6 link name=\"Admin Page\"\n  e7 link name=\"home\"\n  e8 link name=\"about\"\n  e9 link name=\"contact\"\n  e10 textbox value=\"john\"\n  e11 textbox value=\"[REDACTED]\"\n  e12 button name=\"Log In\" value=\"Log In\"\n  e13 link name=\"Forgot login info?\"\n  e14 link name=\"Register\"\n  e15 link name=\"Withdraw Funds\"\n  e16 link name=\"Transfer Funds\"\n  e17 link name=\"Check Balances\"\n  e18 link name=\"Make Deposits\"\n  e19 link name=\"Bill Pay\"\n  e20 link name=\"Account History\"\n  e21 link name=\"Transfer Funds\"\n  e22 link name=\"Read More\"\n  e23 link name=\"ParaBank Is Now Re-Opened\"\n  e24 link name=\"New! Online Bill Pay\"\n  e25 link name=\"New! Online Account Transfers\"\n  e26 link name=\"Read More\"\n  e27 link name=\"Home\"\n  e28 link name=\"About Us\"\n  e29 link name=\"Services\"\n  e30 link name=\"Products\"\n  e31 link name=\"Locations\"\n  e32 link name=\"Forum\"\n  e33 link name=\"Site Map\"\n  e34 link name=\"Contact Us\"\n  e35 link name=\"www.parasoft.com\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "intent": "Click the Log In button to log in",
+            "ref": "e12"
+          },
+          "id": "call_46649"
+        },
+        "thoughtSignature": "AY89a18JJG36WTYHGsmzhVs7xnej2aRoeGhslJJJzp+nnPs3V82v66hV6pKUtCHFpSaBNXUcHEXQyigr/CkhpwAk7jC/bMn8uIfbU5+tVvzh95hup7Bfx7zLJ9nQ8fcaCLj9UvxpRrUnb9dQA8kTWOcsAw=="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: https://parabank.parasoft.com/parabank/overview.htm\nTITLE: ParaBank | Accounts Overview\nHTTP: 200\nTEXT: Experience the difference Solutions About Us Services Products Locations Admin Page home about contact Welcome edefeerwer erew Account Services Open New Account Accounts Overview Transfer Funds Bill Pay Find Transactions Update Contact Info Request Loan Log Out Accounts Overview Account Balance* Available Amount 40650 $315.50 $315.50 Total $315.50 *Balance includes deposits that may be subject to holds Home| About Us| Services| Products| Locations| Forum| Site Map| Contact Us © Parasoft. All rights reserved. Visit us at: www.parasoft.com\n\nELEMENTS:\n  e0 link\n  e1 link\n  e2 link name=\"About Us\"\n  e3 link name=\"Services\"\n  e4 link name=\"Products\"\n  e5 link name=\"Locations\"\n  e6 link name=\"Admin Page\"\n  e7 link name=\"home\"\n  e8 link name=\"about\"\n  e9 link name=\"contact\"\n  e10 link name=\"Open New Account\"\n  e11 link name=\"Accounts Overview\"\n  e12 link name=\"Transfer Funds\"\n  e13 link name=\"Bill Pay\"\n  e14 link name=\"Find Transactions\"\n  e15 link name=\"Update Contact Info\"\n  e16 link name=\"Request Loan\"\n  e17 link name=\"Log Out\"\n  e18 link name=\"40650\"\n  e19 link name=\"Home\"\n  e20 link name=\"About Us\"\n  e21 link name=\"Services\"\n  e22 link name=\"Products\"\n  e23 link name=\"Locations\"\n  e24 link name=\"Forum\"\n  e25 link name=\"Site Map\"\n  e26 link name=\"Contact Us\"\n  e27 link name=\"www.parasoft.com\"\n  e28 row name=\"Account\" row=\"Account Balance* Available Amount\"\n  e29 row name=\"40650\" row=\"40650$315.50$315.50\"\n  e30 row name=\"Total\" row=\"Total$315.50\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "read",
+          "args": {
+            "outputName": "accountBalance",
+            "ref": "e29",
+            "intent": "Read the balance of account 40650 from the row"
+          },
+          "id": "call_96777"
+        },
+        "thoughtSignature": "AY89a19C4mFh3IJjeBjRFrg2zNyzu7tv/XdTnsTLlkba1yfFJ/x6E7Rxd0A9EbR3uBPyhbj6om4mWZjdD7rUbtRzANAyAC/NIgYC4d94ubnGd6ULWAJ1W0pgk1vQ+DwTyu0kTW/ZAwMFJeoQ3lehCJDSqLV2UCnQbmavZRFedxZTRC5LmZi4LxeL9YsmcHxRYYRRxbAthFhkGlKCzRw0vq/Q5mxE6gv3EY6ivkUGsrBTvLIgAEhRzaCyRJlk4jBhPB1fuZkw7o/i8TkxFdS3mfs8rFV7wwcPVPoMe5JFBAWRN9VuhDSLEGELicWwSUNoVlvDVpnpYJ4rP6qLXIvQEECtEtVrCyunBrnmKqI8Hc4OlPfWeP6lk/aUYRB/TOhkjx6GxRsrKvqtREyhHDZd/fPk8L0I2Ll0CXBCaZwVhuiUqwdMTTTp1fP04Y9on9bYMgxy/SuHG87oLG71PyZG5wG+OL0LJJtA7TSYBomTWADqKr5zSycJl9L0ZaOlY8jQDfFYwCPGMosBhf4ce99Sdju00QNvqjq2T+LWDg1gFuj/ByqkDyJD+MUYciTeffM+atiMWgy3z0R7CGnCMSWGHeolkIHrJfbzfAIpRSRdcQqK6Rch+5/eTNKqeB+Y7Jy8MgpLxfwd9D6vzhxMGlPc9rHIJTm6DVzAJoZqUAipbCR58j/mR0IHY5eHI/xb9+HCHkPV4OYKFi/NOqH0LwH09DUgJWxbGI6NNzI3AHTYilXHdrx8gHdH2wvojYMyzHHV75uOjNpNiWuGGf4zHekO3sINZVVtXu2l3dByFz3tgxHScoASqX4QdudBNx3QJ5ZUBth5IF2emElOnBJb8ynGF9OjEPdI4htrfkCqaWN4e465qjThnJmRqL9sBUuNxpPu9iHJaEGcyht+yZFfS8n08bM6xQjG3WatuoC9Iesyc4GxcUVFvH9z7FU="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "read",
+          "response": {
+            "result": "Read \"accountBalance\" = \"40650$315.50$315.50\".\nURL: https://parabank.parasoft.com/parabank/overview.htm\nTITLE: ParaBank | Accounts Overview\nHTTP: 200\nTEXT: Experience the difference Solutions About Us Services Products Locations Admin Page home about contact Welcome edefeerwer erew Account Services Open New Account Accounts Overview Transfer Funds Bill Pay Find Transactions Update Contact Info Request Loan Log Out Accounts Overview Account Balance* Available Amount 40650 $315.50 $315.50 Total $315.50 *Balance includes deposits that may be subject to holds Home| About Us| Services| Products| Locations| Forum| Site Map| Contact Us © Parasoft. All rights reserved. Visit us at: www.parasoft.com\n\nELEMENTS:\n  e0 link\n  e1 link\n  e2 link name=\"About Us\"\n  e3 link name=\"Services\"\n  e4 link name=\"Products\"\n  e5 link name=\"Locations\"\n  e6 link name=\"Admin Page\"\n  e7 link name=\"home\"\n  e8 link name=\"about\"\n  e9 link name=\"contact\"\n  e10 link name=\"Open New Account\"\n  e11 link name=\"Accounts Overview\"\n  e12 link name=\"Transfer Funds\"\n  e13 link name=\"Bill Pay\"\n  e14 link name=\"Find Transactions\"\n  e15 link name=\"Update Contact Info\"\n  e16 link name=\"Request Loan\"\n  e17 link name=\"Log Out\"\n  e18 link name=\"40650\"\n  e19 link name=\"Home\"\n  e20 link name=\"About Us\"\n  e21 link name=\"Services\"\n  e22 link name=\"Products\"\n  e23 link name=\"Locations\"\n  e24 link name=\"Forum\"\n  e25 link name=\"Site Map\"\n  e26 link name=\"Contact Us\"\n  e27 link name=\"www.parasoft.com\"\n  e28 row name=\"Account\" row=\"Account Balance* Available Amount\"\n  e29 row name=\"40650\" row=\"40650$315.50$315.50\"\n  e30 row name=\"Total\" row=\"Total$315.50\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "finish",
+          "args": {
+            "successText": "Accounts Overview",
+            "outputs": [
+              {
+                "name": "accountBalance",
+                "value": "$315.50"
+              }
+            ],
+            "summary": "Logged in and retrieved the balance of account 40650 as $315.50"
+          },
+          "id": "call_34959"
+        },
+        "thoughtSignature": "AY89a1+MA/5cyPZmyMA6FWS8D8fi7U47JCfEY9gSkvAASgGeRzCAOMk0Lu8qLcKs3ng3s61/f2BzLOKoaxHxzbUyveP+jMsoxCv76e8NenU/A8OutYBLDo1XmZEE+rFp+gvAWNvHvLQZLPvRErNK2LMe9fGXGcF6beCJbR4WULVdTEEzJ+xBnjezN2lBuy/j+ljhyhOEVgMy3ZvxEqxww7CDeiAcZSi9cUkdZpmYh8n3XPvyf7fyo06sIXcAP201pIzQLHLdgIMyZjtbxURmELUqTJFf8+9nhWUB/iXOD2kc/EgxVi8RwLynEpDF2zt5ktdbwI8mor9/ibTOJuQ2yhn/Sekmr/CpOvGo3101ctYxP47pCTdg9JOr08/ctTg1kCAOmgAXJ6JO3x3Xro0TJmWpop1CB4xS3Y67crClHzaLwvwaV5xursvVHMir5Ww/ZuSuBp/fASWeAtPGgyfCPHdoj+L9BZEx+mophJo+BRYj6xxNKgCcEkcwHr7KWOhoKONz03zrtLUjZO52t+8lPVIo9k96VFh8gO26huDo/90HI1Q+J2zZJ7F8J/taoK8AaoxBIA7KpvIpESSzwSjA1Sx0d1KpxpbhjKi0dlAkpPt+MG9WJyst/yoBD1dAEi1bGpf03f6LSEPX3MZJBsMPMWAMZofzeQzytk7w/YWZ175XN6FmsCeghWfUTmOGg5GTtqX/BBdxCQiwpmS3lS8e2bSqbJUrL4NQc1zpnfMLpwN05ba5yxLsYLBuA14RQXsuAtb+4M8mh9TNtBzti5+8zfoAYymkjX0sFyEkWVSh/NPo3SBge1JJ2KwemprTrBahRKXJ/CCpA2bNWBjfJLH1SIx2B3ow6O7eQ7HUFlHraEXwl2uk6+MB56GKD1fJlYGdyF9b6jl7LtRZzdnGY+udf3D2+wN01CahTVhpdNG3WO5jG4+ZyMr7seTsBlselpPWgAAmWIuu4nuwExQYqwU4WYcaDi0PUxc+qkAqmRSHXH7XTUNwxm3uWXX7CEDor48PM7zUJK2cRwZGmxmL90CQ3fdx3mfxFxa5Jsd1STG/9nnjzSheFom1mwdNV/gE8WdEgVFptGT9qIvPvIN6npvKjf9ye8qk1+jD5IxJ2MinzZ0J7+7aJRfriEu3uWOWYXsm8D6ERn2BMJ89BXWQWz6a13F1ofC/b58y0KWw/+zqM7eCOdExqOCJ2pyZpcFFgMfe2XpC20gfIZCK1stOV8UVx8H70GQMhw4JD2OYaMnGHdaZ1CeiZjosxhs397CEVDMhcJIziMJ2CYNsIR5YtaPuOaIgmFXIcgdtgLa6K2yaRIwY77mR3p+8TOWx3NuLSpbBT3mCNTSnUFv1Bg=="
+      }
+    ]
+  }
+]

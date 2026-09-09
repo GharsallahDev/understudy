@@ -1,0 +1,14 @@
+{"ts":"t+0000","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0001","level":"info","msg":"Discovery start: \"Open a new Checking sub-account for member 100123 with an initial deposit of 25.00, and reach the confirmation screen. When you reach it, finish and return the new account number as an output named \"newAccountNumber\".\"","entryRoute":"/members","model":"gemini-3.5-flash","inputs":["memberNumber","accountType","initialDeposit"]}
+{"ts":"t+0002","level":"action","msg":"type: Enter member number to search"}
+{"ts":"t+0003","level":"action","msg":"click: Search for the member"}
+{"ts":"t+0004","level":"action","msg":"click: Click Open Sub-Account to start opening a new sub-account"}
+{"ts":"t+0005","level":"action","msg":"select: Select Checking as the account type"}
+{"ts":"t+0006","level":"action","msg":"type: Enter initial deposit amount"}
+{"ts":"t+0007","level":"action","msg":"click: Continue to review the sub-account details"}
+{"ts":"t+0008","level":"decision","msg":"Risky action flagged (policy=flag): Confirm and open the new sub-account"}
+{"ts":"t+0009","level":"action","msg":"click: Confirm and open the new sub-account"}
+{"ts":"t+0010","level":"action","msg":"read newAccountNumber","detail":"A new Checking sub-account has been opened for member 100123"}
+{"ts":"t+0011","level":"info","msg":"Discovery finish: Opened a new Checking sub-account for member 100123 with an initial deposit of 25.00 and retrieved the new account number 100123-90.","detail":"Sub-Account Opened"}
+{"ts":"t+0012","level":"info","msg":"Self-verifying: replaying the recorded artifact deterministically (safe prefix only — will not re-commit the irreversible step)…"}
+{"ts":"t+0028","level":"info","msg":"Self-verify: success","detail":"artifact reproduces ✓"}

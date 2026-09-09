@@ -1,0 +1,15 @@
+{
+  "runId": "happy-mtu1b73s-1362",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:06.409Z",
+  "endedAt": "2026-09-09T11:48:07.552Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-happy-mtu1b73s-1362",
+  "status": "success",
+  "outputs": {
+    "savingsBalance": 482355
+  },
+  "checkpointsPassed": 2
+}

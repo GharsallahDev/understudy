@@ -1,0 +1,7 @@
+{"ts":"t+0055","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0056","level":"info","msg":"Replay start: lookup-member-savings-balance@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123"},"approval":"approved"}
+{"ts":"t+0057","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0058","level":"action","msg":"type s1 ✓","detail":"Enter the member number to search for"}
+{"ts":"t+0059","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0060","level":"action","msg":"click s2 ✓","detail":"Search for the member"}
+{"ts":"t+0061","level":"info","msg":"Replay success","outputs":{"savingsBalance":482355}}

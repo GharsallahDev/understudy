@@ -1,0 +1,271 @@
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "GOAL: Open a new Checking sub-account for member 100123 with an initial deposit of 25.00, and reach the confirmation screen. When you reach it, finish and return the new account number as an output named \"newAccountNumber\".\n\nINPUTS AVAILABLE:\n  - memberNumber = 100123 (The member number)\n  - accountType = Checking (The share type to open)\n  - initialDeposit = 25.00 (Opening deposit amount)\n\nYou are already signed in and on the entry screen. Complete the goal.\n\nURL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  e0 textbox name=\"Member Number\" row=\"Member Number Search\"\n  e1 button name=\"Search\"\n  e2 row name=\"Member Number\" row=\"Member Number Search\""
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "text": "100123",
+            "boundInput": "memberNumber",
+            "ref": "e0",
+            "intent": "Enter member number to search"
+          },
+          "id": "call_371324"
+        },
+        "thoughtSignature": "AY89a1+0lWzBY5NinqKJFyy9K451DjMvTzjsFRae8LkELxSUeUNAl/VfZEUnm4LoGWjhPPvuTBuQtCEQ5XfyBw6UHa/9pO/O1lVEbqQQuGafhkpke3DFATAO1WbRCi2NDk2gnXCcYbtDpEHsGHAkPbtxua9B0a1WVMGwPf72wehX4SGLf3u27PMEo6wRultOIMBqiXzxaONbDjfHJHv5mBcNWxC9gktokp3/3KiCc0R8vij+KKi+Uo0FOgn60KhqIMLw+OwanvV0NaTWPlESgCwJIinD3k8hHEO6q0I7XGam0D56tXEE0l+oc4fvNwk5eU487yT5WNCnqbev5zvybzKmXdcEnA3GhiGgqWNaY/HW/DHBs3n6MNwVNp2cXLK8nguOWrymjRtFu93/1/rIyZ3s8GlK7UGPpM08Wllup6cdl4jnJStgBNozH4SvNsHgE6uuzfdpp/aHeyyIrYf4qhMm92vQpbcnZkpZJtafPAfYGifkYGej01jRhXrbPTM/Yls/uUgy2UQvon7c2OsNkMD9oAwQa93On4cA12bjZIq4IweaQ0BoZJDhbvy8Ja0a9igpbmes1Zrtv1bypTUfJZdGq6kjBNsObs8C6ZL0siD8qgpNOKwX0VtNchJBt3/2EcxAD2M7Jtm7LSpCKU+n4d5MMyvwe+CYs/vxKAjbwclk5S9LaB9f3ruuAEOeEBKJYouq4+cSg+edt7GSFGTTEdI76zoXZSMnn2Alg6zC8iKiypBB9pEOR3OTlo4="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  e0 textbox name=\"Member Number\" value=\"100123\" row=\"Member Number Search\"\n  e1 button name=\"Search\"\n  e2 row name=\"Member Number\" row=\"Member Number Search\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "ref": "e1",
+            "intent": "Search for the member"
+          },
+          "id": "call_442863"
+        },
+        "thoughtSignature": "AY89a1+NeJgLYEkmlD7wiVEDak3em3WH01zD+YWC9V5mv08VjZ9Ia9vevj6Oooxz99nexYDPOhoCS7wO8eBHQvm8sU/jKmmec6BA8j7R5a7CjnUEH5x3iujVjd74yYIQLR76vrL5BSumSuzLPG0="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123\nTITLE: Member 100123\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account\n\nELEMENTS:\n  e0 link name=\"Open Sub-Account\"\n  e1 row name=\"Status\" row=\"Statusactive Opened2015-03-11 SSN***-**-4417\"\n  e2 row name=\"Share Type\" row=\"Share TypeAccount #BalanceStatus\"\n  e3 row name=\"Regular Savings\" row=\"Regular Savings 100123-00 $4,823.55 open\"\n  e4 row name=\"Checking\" row=\"Checking 100123-70 $1,299.00 open\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "ref": "e0",
+            "intent": "Click Open Sub-Account to start opening a new sub-account"
+          },
+          "id": "call_319045"
+        },
+        "thoughtSignature": "AY89a1/yuEf1Q1iOXR0o0G8wIYxI9wXTmAeYhJ+sWPcR9rtSGpNbaF2q/tkIyMFWXOtH7ScgudTpvd5nGO2KWNvrVcxDPfv5etvSuDNmZYSlcJhK1dAHGOwrUxTpDBwpR18AnXtWa6CPV80nzngIS+AP1csglPLwtoP6aq9GLqnR6vE2e0CSqIdeLPtjOdY25CcdXzMBnADmOVKs7jhcHaL5QVtmRgA1/OAHo6s2NLp0Wzt5qy0B9oo9THGG9PogUc6X6XYTMTKlz5GziOhV"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123/subaccounts/new\nTITLE: Open Sub-Account\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Open Sub-Account — Member 100123 Account Type Regular Savings Checking Money Market Certificate Initial Deposit Continue to Review Cancel\n\nELEMENTS:\n  e0 combobox name=\"Account Type\" value=\"Regular Savings\" row=\"Account Type Regular SavingsCheckingMoney MarketCertificate\"\n  e1 textbox name=\"Initial Deposit\"\n  e2 button name=\"Continue to Review\"\n  e3 link name=\"Cancel\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "select",
+          "args": {
+            "intent": "Select Checking as the account type",
+            "boundInput": "accountType",
+            "option": "Checking",
+            "ref": "e0"
+          },
+          "id": "call_383267"
+        },
+        "thoughtSignature": "AY89a194fxxob5f6tMqGMX3119pip1sfOrVkIeGr2guq6V0q2zGbZwlxcoWuE0S2IdV3qicZsi4nTsEAYQ0uxmyy41oiPj1wFNb5+e69qXP5Duaqp1idkTAa8FPtbNioXDLeJQ0RoUNPBbLnxlwMZuzvByqGdcMeN3W4nYS4jQmtobDrNr+/neZNDFcNDsxv7tGHKmGhRIuJ653C6M4Xcut9Fv077P9yzwqZwqz5ik2JOHcAe71ebiWuHA=="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "select",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123/subaccounts/new\nTITLE: Open Sub-Account\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Open Sub-Account — Member 100123 Account Type Regular Savings Checking Money Market Certificate Initial Deposit Continue to Review Cancel\n\nELEMENTS:\n  e0 combobox name=\"Account Type\" value=\"Checking\" row=\"Account Type Regular SavingsCheckingMoney MarketCertificate\"\n  e1 textbox name=\"Initial Deposit\"\n  e2 button name=\"Continue to Review\"\n  e3 link name=\"Cancel\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "intent": "Enter initial deposit amount",
+            "text": "25.00",
+            "ref": "e1",
+            "boundInput": "initialDeposit"
+          },
+          "id": "call_50840"
+        },
+        "thoughtSignature": "AY89a1+oycR3cxy3Xv3b1AzbQO2anjt7PFyapLKdDHM5V07Sm5zTqS9fNzVNorCzUYIxci7AxoJT+PFTn3iACGrjfVOf/6yt5lybBm/tZuPuQwJVcQY6NOFEIFg59SqRnXcvoaALqkx1PU2nSDthhTImLQiLvbY0rjZ3kDqmv1qRLNmhQqyyR5PsJyEzCGFLzfCfe1xuR5gpDB8XHxhj8mm4Hq88pJfUsRxq5CoZgpu4/N5rZK6dHsE="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123/subaccounts/new\nTITLE: Open Sub-Account\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Open Sub-Account — Member 100123 Account Type Regular Savings Checking Money Market Certificate Initial Deposit Continue to Review Cancel\n\nELEMENTS:\n  e0 combobox name=\"Account Type\" value=\"Checking\" row=\"Account Type Regular SavingsCheckingMoney MarketCertificate\"\n  e1 textbox name=\"Initial Deposit\" value=\"25.00\"\n  e2 button name=\"Continue to Review\"\n  e3 link name=\"Cancel\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "intent": "Continue to review the sub-account details",
+            "ref": "e2"
+          },
+          "id": "call_41235"
+        },
+        "thoughtSignature": "AY89a19whYHG6rAR7vw4clc8mja0BYRFuMntvC48DCOkCN2Hx6ocgQSO1EoGnse13oe8iyU9cJyPWo647k7IMfonK1nQBnC9VmT71hNintoPsqcVkFY31uKXY6YknAScNH/bKnHNwOKNvUNhHgHg"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123/subaccounts/review\nTITLE: Review\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Review New Sub-Account Member 100123 Account Type Checking Confirm & Open Account Back\n\nELEMENTS:\n  e0 button name=\"Confirm & Open Account\"\n  e1 link name=\"Back\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "intent": "Confirm and open the new sub-account",
+            "ref": "e0"
+          },
+          "id": "call_428080"
+        },
+        "thoughtSignature": "AY89a1/RGxOE/OZtNlN8LRMd9faAld/MK7Dy8R+p4H5SOdF9AojIY6ZWJIqFah6SzZFO8Fcf8mflin4WOCDxy55wisAd14UKrDzHHQSGUmFpri1JT6q4RCow9mJrCF5mRUAQijez6JBS8unKJFc0u6Kdw7ZAExCVbO9OjAGK"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123/subaccounts/confirm\nTITLE: Confirmation\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Sub-Account Opened A new Checking sub-account has been opened for member 100123. New Account # 100123-90 Status open Return to member\n\nELEMENTS:\n  e0 status name=\"A new Checking sub-account has been opened for member 100123\" row=\"Sub-Account Opened A new Checking sub-account has been opened for member 100123. New Account #100123-90 Statusopen Retur\"\n  e1 link name=\"Return to member\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "read",
+          "args": {
+            "intent": "Read the new account number from the confirmation message",
+            "ref": "e0",
+            "outputName": "newAccountNumber"
+          },
+          "id": "call_76877"
+        },
+        "thoughtSignature": "AY89a18aIOlmzeUGq0/1pvs9ZWmDPPlI63JnKpYJd854lGFN010hSBTs5ki3lnwkA6DVjhwcmx4RdrMf3Xq7eQeaLgwhWbMXRD0g1uTSGuKy6OebrpH6KBvWo+L0OnFQKl30OeK1A6R9t/iq7y6ot6ZJChbNpyWYlJys+kfU29Cnvbd9NDqKwjLrJHkz1hnx2IBDo4a08HKNvspncqxkkqkeEJJV5TBvorPU7QItWstDaJxrnOBkgSgeDOweAg/fuctf6xCn+xHa5HfxcrI+ZXE5VPPWJQ3JXQ11QLgqN6va/4RRv6CTnWGf2T+1lCfQhqsu2bN8vLib2eK92V8R8empU/xnMU3orndA87yB2rhuCd8AIWZ19iVYj8GQV31MMtYZXZz2vrDVVYxvABWKk7f8Ml8vDGS48iZ7ZQsVSeietv0E576aEJqTDYzHtP/Ip0soT+EOKUsUEnERg8TS7GY2UlbXxMCOJ7YyopOkceKyBcxsYBboMb+dkUhx1zMqOEIwg+D+de5Hez++jVdd47DVKslK0NRln4neCIZjkwBj0oDyX0qUKDP6wwObzhdypI1ANciGaINbvcaz1Gnlj2u7bkVWpmAZCtqNrSqBO3EXDsjeHWz6pweb4RkrqICHCn+c+Ipcnc+MNwntpVJw08fqNeYjr4I5si+j35gpL8dNjbHPLuZRQn0CjuTq0NvdfbTC36v5ot9ev4/KGD/k1Ud4Pf9BrtLP0JzGHc5B0rbyJs8zdcgdumsah/04lFRr4IX27912iz7NpqqgOJ7jZ6kC5uxjIpn/FoFUxY2uJhYdtvdPUHxWBpy634jUwzoiw/khzP6xDPL85UFWgDTXMR1lhbOhkZ4YGVIUI2AljowDF/dTuyr3X4AlxfIP46pArtMmtaJFTlJas7OhVZGkrDiWFIj2T8VAWHdlSBmWILe7fAvFiDiHGETTxZ2rP0rAE5yfgRoHdev4T+Wweww7gsVGN+auFYqxaVq8KGplFU3TrUww"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "read",
+          "response": {
+            "result": "Read \"newAccountNumber\" = \"A new Checking sub-account has been opened for member 100123.\n        \n          New Account #100123-90\n          Statusopen\".\nURL: http://localhost:3100/members/100123/subaccounts/confirm\nTITLE: Confirmation\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Sub-Account Opened A new Checking sub-account has been opened for member 100123. New Account # 100123-90 Status open Return to member\n\nELEMENTS:\n  e0 status name=\"A new Checking sub-account has been opened for member 100123\" row=\"Sub-Account Opened A new Checking sub-account has been opened for member 100123. New Account #100123-90 Statusopen Retur\"\n  e1 link name=\"Return to member\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "finish",
+          "args": {
+            "summary": "Opened a new Checking sub-account for member 100123 with an initial deposit of 25.00 and retrieved the new account number 100123-90.",
+            "successText": "Sub-Account Opened",
+            "outputs": [
+              {
+                "name": "newAccountNumber",
+                "value": "100123-90"
+              }
+            ]
+          },
+          "id": "call_391656"
+        },
+        "thoughtSignature": "AY89a1/2A/05TfMrm7SfA6/dj9VpUFIZo1YqaYwlOm2/+PPTzsEWObtJjb/ZV6C461QRxxDkfhH7u7L0mUE9A4A/jjpbhFnzSCkcNWbamShYbUhFdcUL9/E4fGRCKHxEvVl10apZALIZXVnbCcEfVZERs+YeNDimTda9bExOll/xOD9TErQavGNwVxIiThldwzFhV8mkk/u0imoxQGA/n9MX2dBikDJR1zKH4Y1m6fvWbAzfDv2E1v/cnuBsrgleFzDo+gWn7sFp8RS3O3WOaWwiAWo8FqNqfC8zVqE0LeRJe/55IWI/BNcMwInyDfVCHy2Ww1K9cmnTYANonAa5YBAYqG9j4VgRbcF5mJoVrXFUEU+J89PFpy/AGuDJOAhC40vETj2STnXHCNDh+kFNxDPJhWcB+0l1X0aOAdw8JmKS4W5W7dhoBiqSS18hCIpTzl1MzBrGDyIVM8Z25E/eh0U+ESx6cnF0DaOBx280HDv/be3xFV1IVa+u8kBCA9fqIn+6AtjySlL0yS6FjmDmQowhaPlxvgh2tlFoII8gu7B4Ur4F/WBCszeAqbPKA5f5xHD5Miwck1Tp3Wkzfz4R5vtcbtnFHHmskzYyKdEevriUhFitp5NWQ9ZmTggTLVpF3ZnVc3bM6l9M+n6nNCv6LrJiGmv3ttwcZEH1llyG/XqQYIIRB3R6aoFYDHZdGqq5opVEThCrrelAxcFkw3TZmSh3d5z2wAcYM8Utpuoi2xxCGJZ9tfOf/pkOoGlFnA3PZ3Xz4XPp09XtHGsMIYqCS9VxgbXG+9AVVLFy8gdaS4HLpOx/c1misfd/HyZPsjNQsOBVQ9R7ig3n8yt6mY4Ib2DQcGjpZ2+P/OHQCCZrwTWTHd2jPzUmHMJGcAfJxred7qkUXO1RHhOjv5jWC5qyiGenbgYf/KyzyNklW21B7cEqrKIlXfY9d+wbGzsGIJOwq8jv9z7EUD6aM3uPOAYAj9qc1fh7e8Sy8Ro+2BWu7K/gtfoUtnDbmr0wJhyytLH0T9iNIZ+elEHYurwQLDHmrPxT190DZ4truKlSuHGQgPXGbdgNY7XWDODLM8Nbs2llMdmKpZ95kY4zRyTYT+RfEzIdLCE0SWdUcqfUoJZ/ZcSNt3FAgweGm0ISl2vs1eGK1e5I65kSvQtoZ7hkL+dUVbnP8Kr/0E+qDJmnpx/pY9v0KZ/pE4FwNXwjx2XIX1kQcPnwYhQAgbyjDfY+ZoR2lGkOAxTqPd++Wk4qUvVjOLUbRswi0IGlZ3qbuwLZUCKKCqkLSf6CdJYm1CtSCQS9EBuSCJzoGW2uK/mhe6/kaltb"
+      }
+    ]
+  }
+]

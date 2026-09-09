@@ -1,0 +1,8 @@
+{"ts":"t+0007","level":"warn","msg":"Using DEFAULT operator policy; artifact-recorded policy is NOT trusted as the outer bound. Set UNDERSTUDY_ALLOWED_ROUTES or pass --allow-route to sanction non-default routes."}
+{"ts":"t+0008","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0009","level":"info","msg":"Replay start: lookup-member-savings-balance@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123"},"approval":"draft"}
+{"ts":"t+0010","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0011","level":"action","msg":"type s1 ✓","detail":"Enter the member number to search"}
+{"ts":"t+0012","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0013","level":"action","msg":"click s2 ✓","detail":"Click Search to find the member"}
+{"ts":"t+0014","level":"info","msg":"Replay success","outputs":{"savingsBalance":482355}}

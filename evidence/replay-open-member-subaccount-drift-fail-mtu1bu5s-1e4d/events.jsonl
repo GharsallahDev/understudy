@@ -1,0 +1,16 @@
+{"ts":"t+0164","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0165","level":"info","msg":"Replay start: open-member-subaccount@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123","accountType":"Checking","initialDeposit":"25.00"},"approval":"approved"}
+{"ts":"t+0166","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0167","level":"action","msg":"type s1 ✓","detail":"Enter member number to search"}
+{"ts":"t+0168","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0169","level":"action","msg":"click s2 ✓","detail":"Search for the member"}
+{"ts":"t+0170","level":"action","msg":"resolve s3 via css[4]","detail":"link \"Open Sub-Account\""}
+{"ts":"t+0171","level":"warn","msg":"drift: step s3 resolved via css[4] (recorded primary was role) — capability should be reviewed/re-recorded"}
+{"ts":"t+0172","level":"action","msg":"click s3 ✓","detail":"Click Open Sub-Account to start opening a new sub-account"}
+{"ts":"t+0173","level":"action","msg":"resolve s4 via role[0]","detail":"combobox \"Account Type\""}
+{"ts":"t+0174","level":"action","msg":"select s4 ✓","detail":"Select Checking as the account type"}
+{"ts":"t+0175","level":"action","msg":"resolve s5 via role[0]","detail":"textbox \"Initial Deposit\""}
+{"ts":"t+0176","level":"action","msg":"type s5 ✓","detail":"Enter initial deposit amount"}
+{"ts":"t+0177","level":"warn","msg":"Locator retry on s6","detail":"LOCATOR_UNRESOLVED"}
+{"ts":"t+0178","level":"warn","msg":"Locator retry on s6","detail":"LOCATOR_UNRESOLVED"}
+{"ts":"t+0179","level":"warn","msg":"Stop at s6: failure"}

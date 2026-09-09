@@ -1,0 +1,17 @@
+{"ts":"t+0098","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0099","level":"info","msg":"Replay start: open-member-subaccount@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123","accountType":"Checking","initialDeposit":"25.00"},"approval":"approved"}
+{"ts":"t+0100","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0101","level":"action","msg":"type s1 ✓","detail":"Enter member number to search"}
+{"ts":"t+0102","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0103","level":"action","msg":"click s2 ✓","detail":"Search for the member"}
+{"ts":"t+0104","level":"action","msg":"resolve s3 via role[0]","detail":"link \"Open Sub-Account\""}
+{"ts":"t+0105","level":"action","msg":"click s3 ✓","detail":"Click Open Sub-Account to start opening a new sub-account"}
+{"ts":"t+0106","level":"action","msg":"resolve s4 via role[0]","detail":"combobox \"Account Type\""}
+{"ts":"t+0107","level":"action","msg":"select s4 ✓","detail":"Select Checking as the account type"}
+{"ts":"t+0108","level":"action","msg":"resolve s5 via role[0]","detail":"textbox \"Initial Deposit\""}
+{"ts":"t+0109","level":"action","msg":"type s5 ✓","detail":"Enter initial deposit amount"}
+{"ts":"t+0110","level":"action","msg":"resolve s6 via role[0]","detail":"button \"Continue to Review\""}
+{"ts":"t+0111","level":"action","msg":"click s6 ✓","detail":"Continue to review the sub-account details"}
+{"ts":"t+0112","level":"action","msg":"resolve s7 via role[0]","detail":"button \"Confirm & Open Account\""}
+{"ts":"t+0113","level":"action","msg":"click s7 ✓","detail":"Confirm and open the new sub-account"}
+{"ts":"t+0114","level":"info","msg":"Replay success","outputs":{"newAccountNumber":"100123-92"}}

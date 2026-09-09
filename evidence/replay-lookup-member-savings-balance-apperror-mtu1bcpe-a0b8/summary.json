@@ -1,0 +1,19 @@
+{
+  "runId": "apperror-mtu1bcpe-a0b8",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:13.649Z",
+  "endedAt": "2026-09-09T11:48:14.817Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-apperror-mtu1bcpe-a0b8",
+  "status": "failure",
+  "error": {
+    "condition": "APP_ERROR",
+    "disposition": "hard_failure",
+    "stepId": "s2",
+    "message": "An unexpected error occurred (ref err_05ece2d7). Please try ",
+    "expected": "Server/app error. Stop and surface a debuggable failure.",
+    "observed": "MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Application Error An unexpected error occurred (ref err_05ece2d7). Please try again later."
+  }
+}

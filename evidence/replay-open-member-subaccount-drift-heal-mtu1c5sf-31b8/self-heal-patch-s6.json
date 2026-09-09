@@ -1,0 +1,42 @@
+{
+  "capabilityId": "open-member-subaccount",
+  "stepId": "s6",
+  "reason": "The 'Proceed' button (e2) serves the same purpose as 'Continue to Review' to move to the next step of the sub-account creation process.",
+  "oldTarget": {
+    "description": "button \"Continue to Review\"",
+    "strategies": [
+      {
+        "kind": "role",
+        "role": "button",
+        "name": "Continue to Review",
+        "exact": false
+      },
+      {
+        "kind": "text",
+        "text": "Continue to Review",
+        "exact": false
+      }
+    ],
+    "confidence": 0.95,
+    "robustnessNotes": "[REDACTED]"
+  },
+  "newTarget": {
+    "description": "button \"Proceed\"",
+    "strategies": [
+      {
+        "kind": "role",
+        "role": "button",
+        "name": "Proceed",
+        "exact": false
+      },
+      {
+        "kind": "text",
+        "text": "Proceed",
+        "exact": false
+      }
+    ],
+    "confidence": 0.95,
+    "robustnessNotes": "[REDACTED]"
+  },
+  "note": "Proposed patch. Apply only after human review; then bump capability version."
+}

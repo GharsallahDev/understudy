@@ -1,0 +1,15 @@
+{
+  "runId": "verify-mtu8kzv2-6272",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T15:11:41.658Z",
+  "endedAt": "2026-09-09T15:11:43.139Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-verify-mtu8kzv2-6272",
+  "status": "success",
+  "outputs": {
+    "savingsBalance": 482355
+  },
+  "checkpointsPassed": 2
+}

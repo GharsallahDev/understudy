@@ -1,0 +1,287 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "parabank-account-balance",
+  "version": "1.0.0",
+  "name": "Look up an account balance (public bank)",
+  "description": "On the ParaBank public demo bank: log in and read the current balance of a given account number.",
+  "target": {
+    "appId": "parabank",
+    "surface": "web",
+    "tenantId": "parabank",
+    "entryRoute": "/parabank/index.htm",
+    "baseUrlEnv": "TARGET_BASE_URL",
+    "operatorPolicy": {
+      "allowedRoutes": [
+        "/parabank/**",
+        "/**"
+      ],
+      "allowedActions": [
+        "navigate",
+        "click",
+        "type",
+        "select",
+        "press",
+        "read",
+        "assert",
+        "waitFor"
+      ]
+    }
+  },
+  "scope": {
+    "allowedRoutes": [
+      "/parabank/index.htm",
+      "/parabank/overview.htm"
+    ],
+    "allowedActions": [
+      "type",
+      "click"
+    ]
+  },
+  "inputs": [
+    {
+      "name": "username",
+      "type": "string",
+      "description": "ParaBank login username",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "password",
+      "type": "string",
+      "description": "ParaBank login password",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "accountId",
+      "type": "string",
+      "description": "the account number to read the balance of",
+      "required": true,
+      "pattern": "^\\d+$",
+      "example": "40650",
+      "sensitive": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accountBalance",
+      "type": "number",
+      "description": "Extracted accountBalance",
+      "extraction": {
+        "target": {
+          "description": "row \"40650\"",
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "text": "40650",
+                "exact": true,
+                "fromInput": "accountId"
+              },
+              "relation": "parentRow",
+              "target": {}
+            }
+          ],
+          "confidence": 0.85,
+          "robustnessNotes": "Row anchored on its stable leading cell \"40650\" (exact); the value it contains is read from the row text and is parameter-independent. Stabilized for extraction: input-specific names removed."
+        },
+        "attribute": "text",
+        "transform": "currencyToCents",
+        "pattern": "(-?\\$[\\d,]+\\.\\d{2})"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "intent": "Type the username into the login form",
+      "action": "type",
+      "target": {
+        "description": "textbox",
+        "strategies": [
+          {
+            "kind": "css",
+            "css": "[name=\"username\"]"
+          }
+        ],
+        "confidence": 0.25,
+        "robustnessNotes": "No stable accessible name; relying on css. Ladder: css. Review recommended."
+      },
+      "value": {
+        "from": "input",
+        "input": "username"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s2",
+      "intent": "Type the password into the login form",
+      "action": "type",
+      "target": {
+        "description": "textbox",
+        "strategies": [
+          {
+            "kind": "css",
+            "css": "[name=\"password\"]"
+          }
+        ],
+        "confidence": 0.25,
+        "robustnessNotes": "No stable accessible name; relying on css. Ladder: css. Review recommended."
+      },
+      "value": {
+        "from": "input",
+        "input": "password"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s3",
+      "intent": "Click the Log In button to log in",
+      "action": "click",
+      "target": {
+        "description": "button \"Log In\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Log In",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Customer Login",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "button",
+              "text": "Log In"
+            }
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > relative."
+      },
+      "checkpoint": {
+        "description": "URL is at /parabank/overview.htm",
+        "urlIncludes": "/parabank/overview.htm"
+      },
+      "expectedConditions": [
+        {
+          "code": "PERMISSION_DENIED",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "epic sadface",
+              "locked out",
+              "do not match",
+              "could not be verified",
+              "username is required",
+              "password is required",
+              "invalid credentials"
+            ]
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "LOGIN_FAILED",
+          "note": "Authentication failed (bad/locked credentials). A business outcome the caller must handle, not a crash.",
+          "maxRetries": 0
+        }
+      ],
+      "risk": "safe",
+      "timeoutMs": 10000
+    }
+  ],
+  "successCondition": {
+    "description": "Reached the success screen showing the requested inputs (Logged in and retrieved the balance of account 40650 as $315.50)",
+    "urlIncludes": "/parabank/overview.htm",
+    "allText": [
+      "{{accountId}}"
+    ]
+  },
+  "globalConditions": [
+    {
+      "code": "SESSION_TIMEOUT",
+      "disposition": "escalate",
+      "detect": {
+        "anyText": [
+          "session has expired",
+          "please sign in again"
+        ]
+      },
+      "onDetect": "reauth",
+      "note": "Session/auth expired mid-run. Reauth is a platform concern; hand off for re-authentication, then retry the step.",
+      "maxRetries": 1
+    },
+    {
+      "code": "UNEXPECTED_DIALOG",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "System Notice",
+          "maintenance window"
+        ],
+        "role": "dialog",
+        "roleName": "System Notice"
+      },
+      "onDetect": "dismiss_and_retry",
+      "note": "A known interstitial can appear on any screen. Dismiss it and re-attempt the step.",
+      "maxRetries": 2,
+      "dismissText": "Acknowledge"
+    },
+    {
+      "code": "APP_ERROR",
+      "disposition": "hard_failure",
+      "detect": {
+        "anyOf": [
+          {
+            "httpStatusGte": 500
+          },
+          {
+            "anyText": [
+              "application error",
+              "an unexpected error occurred",
+              "internal server error",
+              "500 -"
+            ]
+          }
+        ]
+      },
+      "onDetect": "fail",
+      "note": "Server/app error. Stop and surface a debuggable failure.",
+      "maxRetries": 0
+    },
+    {
+      "code": "TRANSIENT_LOAD",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "loading",
+          "please wait"
+        ]
+      },
+      "onDetect": "wait_and_retry",
+      "note": "Transient slow/partial load. Back off and retry the step.",
+      "maxRetries": 2
+    }
+  ],
+  "canonicalization": [],
+  "tenantOverrides": [],
+  "provenance": {
+    "discoveredBy": {
+      "model": "gemini-3.5-flash",
+      "provider": "google-vertex"
+    },
+    "discoveredAt": "2026-09-09T11:33:51.732Z",
+    "sourceRunId": "disc-mtu0smff-d7d5",
+    "transcriptDigest": "787aad1f3b60d81045e0b713aaacf75d8453fb1143831cecd77d2df03ec1e038",
+    "verifiedByReplay": true
+  },
+  "approval": {
+    "state": "draft"
+  }
+}

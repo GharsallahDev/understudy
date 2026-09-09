@@ -1,0 +1,16 @@
+{
+  "runId": "notfound-mtu1b8y5-1569",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:08.777Z",
+  "endedAt": "2026-09-09T11:48:09.936Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-notfound-mtu1b8y5-1569",
+  "status": "business_outcome",
+  "outcome": {
+    "code": "MEMBER_NOT_FOUND",
+    "condition": "RECORD_NOT_FOUND",
+    "message": "No member found for member number \"999999\"."
+  }
+}

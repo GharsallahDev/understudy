@@ -1,0 +1,15 @@
+{
+  "runId": "happy-mtu1bhos-39d6",
+  "capabilityId": "open-member-subaccount",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:20.099Z",
+  "endedAt": "2026-09-09T11:48:23.037Z",
+  "stepsAttempted": 7,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-open-member-subaccount-happy-mtu1bhos-39d6",
+  "status": "success",
+  "outputs": {
+    "newAccountNumber": "100123-92"
+  },
+  "checkpointsPassed": 5
+}

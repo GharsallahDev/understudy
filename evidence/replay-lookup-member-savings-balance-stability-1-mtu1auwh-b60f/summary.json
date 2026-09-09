@@ -1,0 +1,15 @@
+{
+  "runId": "stability-1-mtu1auwh-b60f",
+  "capabilityId": "lookup-member-savings-balance",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:47:50.756Z",
+  "endedAt": "2026-09-09T11:47:51.943Z",
+  "stepsAttempted": 2,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-stability-1-mtu1auwh-b60f",
+  "status": "success",
+  "outputs": {
+    "savingsBalance": 482355
+  },
+  "checkpointsPassed": 2
+}

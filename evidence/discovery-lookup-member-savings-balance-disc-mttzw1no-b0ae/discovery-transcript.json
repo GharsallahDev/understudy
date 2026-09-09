@@ -1,0 +1,122 @@
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "GOAL: Look up member 100123 and read their current Regular Savings balance. Then finish, returning the balance as an output named \"savingsBalance\".\n\nINPUTS AVAILABLE:\n  - memberNumber = 100123 (The member number to look up)\n\nYou are already signed in and on the entry screen. Complete the goal.\n\nURL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  e0 textbox name=\"Member Number\" row=\"Member Number Search\"\n  e1 button name=\"Search\"\n  e2 row name=\"Member Number\" row=\"Member Number Search\""
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "boundInput": "memberNumber",
+            "text": "100123",
+            "intent": "Enter the member number to search for",
+            "ref": "e0"
+          },
+          "id": "call_63842"
+        },
+        "thoughtSignature": "AY89a18Ac4PFVyTaNZbrBtRyf13Vz4skYANt99Ow4nVDddajxVQadgULC2aoKo6wWJsR/vv8p3cOpBatJEA5hmBcY5d2tHBt3ks2Gnz1vmqnR5vUWve2Tkr/zFY4Ls0ZLn4mWf/B1mVVeSLGGsp/nvKOLqfPufxTHGYqoBkS/uBz1Oz8c0sfx3LmqQ3i2XZ/cUUnqjc7XFkcRspJMFAmxYX4q02sAJaeS+FXvQ4Vz1LqTB+bbXp3rjP19t+ESM8TN2vGWSUpQK7eSYYFp2BwEj2/4Y2Lc4jxQkJ4SsPPMq5hu43IaMsT0EtSFUpXHWqwUz6HwVSqs4Y3oFN8ee+5ef+wcYLaxXVoB4qvntSsc3wieCooX1z56nDDr+XT440WWL9dV2krTHyZk4QH5Y/cuBAtVKntCex+tfyv+bknEFtB2sUe+yCvaJfSP2upZQapA5+QYtc+6RcTwpHKCWH1VLGTmdguCJN0vdvHDu7OiPs/tTMRypdIIOMWUoNz2cLQ8NH190RcD3MPavsJEZyfbOC515fbIEYu+mwZWx37qAzP78h8K8FXQJYRf1mSyR2zn8d97gH665DA+hxnY9aoJFgSUxIxCD+mrarsk7vqDDE="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  e0 textbox name=\"Member Number\" value=\"100123\" row=\"Member Number Search\"\n  e1 button name=\"Search\"\n  e2 row name=\"Member Number\" row=\"Member Number Search\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "ref": "e1",
+            "intent": "Search for the member"
+          },
+          "id": "call_59241"
+        },
+        "thoughtSignature": "AY89a1+AYPUVuremJmGFQwUlRCqNvqwC8a6bJ62toOhfrjRcLMQBOajd/CikwDNHUfgrsiHq3k5sNM3rLUK3GtJ0AEtk3J15z+ACIk18huf1AFRNhr7ylDQ1y28HSFG1zXL5f9qRG/HQ"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123\nTITLE: Member 100123\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account\n\nELEMENTS:\n  e0 link name=\"Open Sub-Account\"\n  e1 row name=\"Status\" row=\"Statusactive Opened2015-03-11 SSN***-**-4417\"\n  e2 row name=\"Share Type\" row=\"Share TypeAccount #BalanceStatus\"\n  e3 row name=\"Regular Savings\" row=\"Regular Savings 100123-00 $4,823.55 open\"\n  e4 row name=\"Checking\" row=\"Checking 100123-70 $1,299.00 open\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "read",
+          "args": {
+            "outputName": "savingsBalance",
+            "ref": "e3",
+            "intent": "Read the Regular Savings balance"
+          },
+          "id": "call_442513"
+        },
+        "thoughtSignature": "AY89a18KJm6+wHVSwCF5LK6GfXHxjcT8P4qgzbhzuLI8HyI9cHRxVzW/Y51Rxo/58OeiWLZrRdNxPxYz0yWOz75uIu1ATdi0amlXYgBPPguN8IrmT7MLAR/9xZ+X9RRAMqxag90QvsM7NNcHcMjoWgDpRkGo3WnFDJfP0QxPjfmbJE4aS6DTOHWgRFhPyNeYh538hcYzZRHbZZjTq485siQN9mb89sDs5R0XaRulH1lItuIVJ+IRfqfDluEwjr4xND5IFwGnQtMu+WXocpTkVKIcURw89dVICW6X5YhODYd1Zq0Ud6MAwFGqyncVZJZ/dGlQvW8+XtU9yknFNRM6qL8eAmRBraUtjSMUKBgwA8x27orDysUsCW/uU5z5uVOnrjLBx7nnGrf9Qz4cJBTShiJW8PIzK1tlp5lVo54S4aZfmb912hpYF1XuauLzOgZxMjBQziFxS3c7p+/kHrYbgY3IW6z6+x7R3sa5"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "read",
+          "response": {
+            "result": "Read \"savingsBalance\" = \"Regular Savings\n        100123-00\n        $4,823.55\n        open\".\nURL: http://localhost:3100/members/100123\nTITLE: Member 100123\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account\n\nELEMENTS:\n  e0 link name=\"Open Sub-Account\"\n  e1 row name=\"Status\" row=\"Statusactive Opened2015-03-11 SSN***-**-4417\"\n  e2 row name=\"Share Type\" row=\"Share TypeAccount #BalanceStatus\"\n  e3 row name=\"Regular Savings\" row=\"Regular Savings 100123-00 $4,823.55 open\"\n  e4 row name=\"Checking\" row=\"Checking 100123-70 $1,299.00 open\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "finish",
+          "args": {
+            "successText": "Dana Whitfield",
+            "summary": "Looked up member 100123 and retrieved their Regular Savings balance of $4,823.55.",
+            "outputs": [
+              {
+                "value": "$4,823.55",
+                "name": "savingsBalance"
+              }
+            ]
+          },
+          "id": "call_60407"
+        },
+        "thoughtSignature": "AY89a198gw6MvsJ9PtWHANjYwQM55sFGY3Jn5t+kIsJpcsUIBZpOWzJQTey8dFPzADTCjouA9uh5xjd/V4MgmPWqsYOG4SV0NrPCl4VK/0qwALKID36xQHIgqrWiHf/T5JYR2/ZF/Ev0KqwXiIy+7q2o2iN1uYEl1HdKimzcXhF068geW/Cvh1+bbK3EKQEBJNACc9tN2bBFRGFSBoTpyXcPJ+ArJ+sPI4hC+fsptGtOpFh/EwxarEGOaZj29tnf1/cidl4XuacqsgdD4EHsnujtDt6I3mWCPm2DPJ93BdDhMjyN9iDt3c1k6YoMo+7oNlc4+xHgwpWVeM5vAJ1QA9wzGVqmZIfYxOO131ladpBFsXcF59Hkqy4P3fYPu9eHNkw2vkNbFqtE6BoWSr0cFHFiiFmv+RG3ASB/v1dHci/3fD2xlKXj+43tpICysI0YCgtoTLmHdZjnHK+Tj/H2RzEao8p/bg=="
+      }
+    ]
+  }
+]

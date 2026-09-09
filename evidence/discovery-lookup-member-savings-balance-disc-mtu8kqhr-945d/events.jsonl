@@ -1,0 +1,8 @@
+{"ts":"t+0000","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0001","level":"info","msg":"Discovery start: \"Look up member 100123 and read their current Regular Savings balance. Then finish, returning the balance as an output named \"savingsBalance\".\"","entryRoute":"/members","model":"gemini-3.5-flash","inputs":["memberNumber"]}
+{"ts":"t+0002","level":"action","msg":"type: Enter the member number to search"}
+{"ts":"t+0003","level":"action","msg":"click: Click Search to find the member"}
+{"ts":"t+0004","level":"action","msg":"read savingsBalance","detail":"Regular Savings\n        100123-00\n        $4,823.55\n        "}
+{"ts":"t+0005","level":"info","msg":"Discovery finish: Looked up member 100123 and retrieved their Regular Savings balance of $4,823.55.","detail":"Dana Whitfield"}
+{"ts":"t+0006","level":"info","msg":"Self-verifying: replaying the recorded artifact deterministically…"}
+{"ts":"t+0015","level":"info","msg":"Self-verify: success","detail":"artifact reproduces ✓"}

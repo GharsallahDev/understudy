@@ -1,0 +1,360 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "parabank-account-balance",
+  "version": "1.0.0",
+  "name": "Look up an account balance (public bank)",
+  "description": "On the ParaBank public demo bank: log in and read the current balance of a given account number.",
+  "target": {
+    "appId": "parabank",
+    "surface": "web",
+    "tenantId": "parabank",
+    "entryRoute": "/parabank/index.htm",
+    "baseUrlEnv": "TARGET_BASE_URL"
+  },
+  "scope": {
+    "allowedRoutes": [
+      "/parabank/index.htm",
+      "/parabank/overview.htm"
+    ],
+    "allowedActions": [
+      "type",
+      "click",
+      "navigate"
+    ]
+  },
+  "inputs": [
+    {
+      "name": "username",
+      "type": "string",
+      "description": "ParaBank login username",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "password",
+      "type": "string",
+      "description": "ParaBank login password",
+      "required": true,
+      "sensitive": true
+    },
+    {
+      "name": "accountId",
+      "type": "string",
+      "description": "the account number to read the balance of",
+      "required": true,
+      "pattern": "^\\d+$",
+      "example": "13344",
+      "sensitive": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "accountBalance",
+      "type": "number",
+      "description": "Extracted accountBalance",
+      "extraction": {
+        "target": {
+          "description": "row \"13344\"",
+          "strategies": [
+            {
+              "kind": "relative",
+              "anchor": {
+                "text": "13344",
+                "exact": false,
+                "fromInput": "accountId"
+              },
+              "relation": "parentRow",
+              "target": {}
+            }
+          ],
+          "confidence": 0.85,
+          "robustnessNotes": "Row anchored on its stable label \"13344\"; the value it contains is read from the row text and is parameter-independent. Stabilized for extraction: input-specific names removed."
+        },
+        "attribute": "text",
+        "transform": "currencyToCents",
+        "pattern": "(\\$[\\d,]+\\.\\d{2})"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "intent": "Type the username into the login form",
+      "action": "type",
+      "target": {
+        "description": "textbox",
+        "strategies": [
+          {
+            "kind": "css",
+            "css": "[name=\"username\"]"
+          }
+        ],
+        "confidence": 0.25,
+        "robustnessNotes": "No stable accessible name; relying on css. Ladder: css. Review recommended."
+      },
+      "value": {
+        "from": "input",
+        "input": "username"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s2",
+      "intent": "Type the password into the login form",
+      "action": "type",
+      "target": {
+        "description": "textbox",
+        "strategies": [
+          {
+            "kind": "css",
+            "css": "[name=\"password\"]"
+          }
+        ],
+        "confidence": 0.25,
+        "robustnessNotes": "No stable accessible name; relying on css. Ladder: css. Review recommended."
+      },
+      "value": {
+        "from": "input",
+        "input": "password"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s3",
+      "intent": "Click the Log In button to authenticate",
+      "action": "click",
+      "target": {
+        "description": "button \"Log In\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Log In",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Customer Login",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "button",
+              "text": "Log In"
+            }
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > relative."
+      },
+      "checkpoint": {
+        "description": "URL is at /parabank/overview.htm",
+        "urlIncludes": "/parabank/overview.htm"
+      },
+      "expectedConditions": [
+        {
+          "code": "PERMISSION_DENIED",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "epic sadface",
+              "locked out",
+              "do not match",
+              "could not be verified",
+              "username is required",
+              "password is required",
+              "invalid credentials"
+            ]
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "LOGIN_FAILED",
+          "note": "Authentication failed (bad/locked credentials). A business outcome the caller must handle, not a crash.",
+          "maxRetries": 0
+        }
+      ],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s4",
+      "intent": "Click Accounts Overview to refresh/load the accounts list",
+      "action": "click",
+      "target": {
+        "description": "link \"Accounts Overview\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Accounts Overview",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Accounts Overview",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Account Services",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "link",
+              "text": "Accounts Overview"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "a[href*=\"parabank/overview.htm\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text > relative > css."
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s5",
+      "intent": "Click Accounts Overview again to see if AJAX loaded the accounts",
+      "action": "click",
+      "target": {
+        "description": "link \"Accounts Overview\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Accounts Overview",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Accounts Overview",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Account Services",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "link",
+              "text": "Accounts Overview"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "a[href*=\"parabank/overview.htm\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text > relative > css."
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s6",
+      "intent": "Navigate directly to overview.htm to force a full reload",
+      "action": "navigate",
+      "route": "/parabank/overview.htm",
+      "checkpoint": {
+        "description": "URL is at /parabank/overview.htm",
+        "urlIncludes": "/parabank/overview.htm"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    }
+  ],
+  "successCondition": {
+    "description": "Reached: Logged in successfully, navigated to Accounts Overview, located account 13344, and read its balance of $441323.15.",
+    "anyText": [
+      "Accounts Overview"
+    ]
+  },
+  "globalConditions": [
+    {
+      "code": "SESSION_TIMEOUT",
+      "disposition": "escalate",
+      "detect": {
+        "anyText": [
+          "session has expired",
+          "please sign in again"
+        ]
+      },
+      "onDetect": "reauth",
+      "note": "Session/auth expired mid-run. Reauth is a platform concern; hand off for re-authentication, then retry the step.",
+      "maxRetries": 1
+    },
+    {
+      "code": "UNEXPECTED_DIALOG",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "System Notice",
+          "maintenance window"
+        ],
+        "role": "dialog",
+        "roleName": "System Notice"
+      },
+      "onDetect": "dismiss_and_retry",
+      "note": "A known interstitial can appear on any screen. Dismiss it and re-attempt the step.",
+      "maxRetries": 2,
+      "dismissText": "Acknowledge"
+    },
+    {
+      "code": "APP_ERROR",
+      "disposition": "hard_failure",
+      "detect": {
+        "anyText": [
+          "Application Error",
+          "an unexpected error occurred"
+        ],
+        "httpStatusGte": 500
+      },
+      "onDetect": "fail",
+      "note": "Server/app error. Stop and surface a debuggable failure.",
+      "maxRetries": 0
+    },
+    {
+      "code": "TRANSIENT_LOAD",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "loading",
+          "please wait"
+        ]
+      },
+      "onDetect": "wait_and_retry",
+      "note": "Transient slow/partial load. Back off and retry the step.",
+      "maxRetries": 2
+    }
+  ],
+  "canonicalization": [],
+  "tenantOverrides": [],
+  "provenance": {
+    "discoveredBy": {
+      "model": "gemini-3.5-flash",
+      "provider": "google-vertex"
+    },
+    "discoveredAt": "2026-09-09T08:04:39.459Z",
+    "sourceRunId": "disc-mtttbeha-0667",
+    "transcriptDigest": "97b14358b59f595f4ea841970f84c5b78457354b4635fe0757966de5e67f6a11",
+    "verifiedByReplay": true
+  },
+  "approval": {
+    "state": "draft"
+  }
+}

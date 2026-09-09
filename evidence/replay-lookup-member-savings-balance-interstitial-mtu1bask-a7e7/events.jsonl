@@ -1,0 +1,8 @@
+{"ts":"t+0069","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0070","level":"info","msg":"Replay start: lookup-member-savings-balance@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123"},"approval":"approved"}
+{"ts":"t+0071","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0072","level":"action","msg":"type s1 ✓","detail":"Enter the member number to search for"}
+{"ts":"t+0073","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0074","level":"condition","msg":"Detected UNEXPECTED_DIALOG (recoverable)","step":"s2","onDetect":"dismiss_and_retry"}
+{"ts":"t+0075","level":"info","msg":"Dismissed UNEXPECTED_DIALOG via \"Acknowledge\""}
+{"ts":"t+0076","level":"info","msg":"Replay success","outputs":{"savingsBalance":482355}}

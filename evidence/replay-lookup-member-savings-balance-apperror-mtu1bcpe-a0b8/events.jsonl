@@ -1,0 +1,7 @@
+{"ts":"t+0077","level":"info","msg":"Authenticated (platform-level; not part of the capability)"}
+{"ts":"t+0078","level":"info","msg":"Replay start: lookup-member-savings-balance@1.0.0 (tenant meridian)","inputs":{"memberNumber":"100123"},"approval":"approved"}
+{"ts":"t+0079","level":"action","msg":"resolve s1 via role[0]","detail":"textbox \"Member Number\""}
+{"ts":"t+0080","level":"action","msg":"type s1 ✓","detail":"Enter the member number to search for"}
+{"ts":"t+0081","level":"action","msg":"resolve s2 via role[0]","detail":"button \"Search\""}
+{"ts":"t+0082","level":"condition","msg":"Detected APP_ERROR (hard_failure)","step":"s2","onDetect":"fail"}
+{"ts":"t+0083","level":"warn","msg":"Stop at s2: failure"}

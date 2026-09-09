@@ -1,0 +1,154 @@
+{
+  "success": true,
+  "runId": "disc-mtu8kqhr-945d",
+  "goal": "Look up member 100123 and read their current Regular Savings balance. Then finish, returning the balance as an output named \"savingsBalance\".",
+  "inputs": [
+    {
+      "name": "memberNumber",
+      "value": "100123",
+      "description": "The member number to look up"
+    }
+  ],
+  "entryRoute": "/members",
+  "actions": [
+    {
+      "index": 0,
+      "tool": "type",
+      "intent": "Enter the member number to search",
+      "risk": "safe",
+      "preUrl": "http://localhost:3100/members",
+      "postUrl": "http://localhost:3100/members",
+      "postTextDigest": "MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search",
+      "targetSpec": {
+        "description": "textbox \"Member Number\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "textbox",
+            "name": "Member Number",
+            "exact": false
+          },
+          {
+            "kind": "label",
+            "label": "Member Number",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Search",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "textbox"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "[name=\"memberNumber\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "[REDACTED]"
+      },
+      "text": "100123",
+      "boundInput": "memberNumber",
+      "sensitive": false
+    },
+    {
+      "index": 1,
+      "tool": "click",
+      "intent": "Click Search to find the member",
+      "risk": "safe",
+      "preUrl": "http://localhost:3100/members",
+      "postUrl": "http://localhost:3100/members/100123",
+      "postTextDigest": "MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account",
+      "targetSpec": {
+        "description": "button \"Search\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Search",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Search",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Member Number",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "button"
+            }
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "[REDACTED]"
+      }
+    },
+    {
+      "index": 2,
+      "tool": "read",
+      "intent": "Read the Regular Savings balance row",
+      "risk": "safe",
+      "preUrl": "http://localhost:3100/members/100123",
+      "postUrl": "http://localhost:3100/members/100123",
+      "postTextDigest": "MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account",
+      "targetSpec": {
+        "description": "row \"Regular Savings\"",
+        "strategies": [
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Regular Savings",
+              "exact": true
+            },
+            "relation": "parentRow",
+            "target": {}
+          }
+        ],
+        "confidence": 0.85,
+        "robustnessNotes": "[REDACTED]"
+      },
+      "outputName": "savingsBalance",
+      "readValue": "Regular Savings\n        100123-00\n        $4,823.55\n        open",
+      "sensitive": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "savingsBalance",
+      "value": "Regular Savings\n        100123-00\n        $4,823.55\n        open",
+      "spec": {
+        "description": "row \"Regular Savings\"",
+        "strategies": [
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Regular Savings",
+              "exact": true
+            },
+            "relation": "parentRow",
+            "target": {}
+          }
+        ],
+        "confidence": 0.85,
+        "robustnessNotes": "[REDACTED]"
+      },
+      "sensitive": false
+    }
+  ],
+  "successText": "Dana Whitfield",
+  "summary": "Looked up member 100123 and retrieved their Regular Savings balance of $4,823.55.",
+  "model": "gemini-3.5-flash",
+  "interventions": 0,
+  "stopReason": "goal_met"
+}

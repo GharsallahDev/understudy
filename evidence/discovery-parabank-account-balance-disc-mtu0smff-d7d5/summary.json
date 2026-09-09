@@ -1,0 +1,10 @@
+{
+  "status": "discovery_success",
+  "capabilityId": "parabank-account-balance",
+  "steps": 3,
+  "outputs": [
+    "accountBalance"
+  ],
+  "verifiedByReplay": true,
+  "runId": "disc-mtu0smff-d7d5"
+}

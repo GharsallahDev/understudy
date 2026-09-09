@@ -1,0 +1,15 @@
+{
+  "runId": "stability-1-mtu1b0m2-fd04",
+  "capabilityId": "open-member-subaccount",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:47:57.989Z",
+  "endedAt": "2026-09-09T11:48:00.955Z",
+  "stepsAttempted": 7,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-open-member-subaccount-stability-1-mtu1b0m2-fd04",
+  "status": "success",
+  "outputs": {
+    "newAccountNumber": "100123-90"
+  },
+  "checkpointsPassed": 5
+}

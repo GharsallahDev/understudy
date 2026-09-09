@@ -1,0 +1,15 @@
+{
+  "runId": "cascade-mtu1bqge-54d5",
+  "capabilityId": "open-member-subaccount",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "cascade",
+  "startedAt": "2026-09-09T11:48:31.479Z",
+  "endedAt": "2026-09-09T11:48:35.038Z",
+  "stepsAttempted": 8,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-open-member-subaccount-cascade-mtu1bqge-54d5",
+  "status": "success",
+  "outputs": {
+    "newAccountNumber": "100123-90"
+  },
+  "checkpointsPassed": 6
+}

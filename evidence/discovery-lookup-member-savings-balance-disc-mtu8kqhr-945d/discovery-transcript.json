@@ -1,0 +1,123 @@
+[
+  {
+    "role": "user",
+    "parts": [
+      {
+        "text": "GOAL: Look up member 100123 and read their current Regular Savings balance. Then finish, returning the balance as an output named \"savingsBalance\".\n\nINPUTS AVAILABLE:\n  - memberNumber = 100123 (The member number to look up)\n\nYou are already signed in and on the entry screen. Complete the goal.\n\nURL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  f0:e0 textbox name=\"Member Number\" row=\"Member Number Search\"\n  f0:e1 button name=\"Search\"\n  f0:e2 row name=\"Member Number\" row=\"Member Number Search\""
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "type",
+          "args": {
+            "ref": "f0:e0",
+            "intent": "Enter the member number to search",
+            "text": "100123",
+            "boundInput": "memberNumber"
+          },
+          "id": "call_9201"
+        },
+        "thoughtSignature": "AY89a19f8mKQhErTySPdk+Gff9dlEyJxhgWqAGQ0hDk25IIiLZn+64sMOGYwGNLWw2yYJUNc8irSi0E25NNMY0oUil7cesPJnsC0DdlUXcTgenM/OSnDWRJJMt2T1fV6HAC43rP38/wnCmpRzqpcIEw9cLX+Xc9zFxuH/EAivfvMRHi/hwgKoKfw70A+FGgQb7w3vBQ5Z14/I/ffuhwayTD92OBH7+3sKkP89PXhR3GWUscYv3o1tez53vE9XpyfJD1AxjSNOZAVI+WJFGaWoxLcIDPwhWUdfDUgyth+w8ZsOlaZXE/byWa5uXHmEnIaeEo3vWFMGAkiE4x05ZKXjSqul2xe2FvXxcnSIa/nzJozFR6HOrHgnXtsoFArlHfhNk6Lua6l7X+3UA46BynNgnUbTxM/0DlZMw+anyEpko1Bomlvd9S8Hw1lHk3B6tnKhXwLm+7Gs+JiooJg"
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "type",
+          "response": {
+            "result": "URL: http://localhost:3100/members\nTITLE: Member Search\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member Search Member Number Search\n\nELEMENTS:\n  f0:e0 textbox name=\"Member Number\" value=\"100123\" row=\"Member Number Search\"\n  f0:e1 button name=\"Search\"\n  f0:e2 row name=\"Member Number\" row=\"Member Number Search\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "click",
+          "args": {
+            "intent": "Click Search to find the member",
+            "ref": "f0:e1"
+          },
+          "id": "call_97377"
+        },
+        "thoughtSignature": "AY89a19d5Isd1XnmX7RNzHnBb9H8h1UaUBXt+6wvrczCXHate48cOSc7ejxHUq4Pj8/W5RdkIuKCUmN/Bsl0crmjrErYgSYGRpC2mfnxyA4uSMAX97x360ANEQfvKhve0E/0LUK66+hWtoWL7a1G0j9MKvvaKig="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "click",
+          "response": {
+            "result": "URL: http://localhost:3100/members/100123\nTITLE: Member 100123\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account\n\nELEMENTS:\n  f0:e0 link name=\"Open Sub-Account\"\n  f0:e1 row name=\"Status\" row=\"Statusactive Opened2015-03-11 SSN***-**-4417\"\n  f0:e2 row name=\"Share Type\" row=\"Share TypeAccount #BalanceStatus\"\n  f0:e3 row name=\"Regular Savings\" row=\"Regular Savings 100123-00 $4,823.55 open\"\n  f0:e4 row name=\"Checking\" row=\"Checking 100123-70 $1,299.00 open\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "read",
+          "args": {
+            "ref": "f0:e3",
+            "sensitive": false,
+            "outputName": "savingsBalance",
+            "intent": "Read the Regular Savings balance row"
+          },
+          "id": "call_84481"
+        },
+        "thoughtSignature": "AY89a18AftujFuYnCHQxYBHu1IXkUE4SGb8o4xJtAzboWcmpXmNsSlx62g82E+IifFuEcHsMiIMtbdyH9V2rs0nMaWI+ZK23UaACV1I8dssJNUk2DRJ0Um98Smks76Ebkc6aIrs09EWExtdfnd0I9dHrD2kk/TeNcpuYTmmvJ01rLyjtfRFniIpWtEhpeEbB2gBU3ORQ7bGgXMvab5rE9YKQ9utTu4fOBV3h+DTqq22vNNXW9sEXuwu9zgRpvDwi1hW+eqd16bWVA3nh0wuly9BfoG255UfLCGiTWO2JOr/ihtd7Dd6mFlpDFidq+cDvHMAEGoVY0p8yhOMbQEi2cn9xNBJHqoICkr2tPesx2A3gujDM4LjhbnlQWKBKocL+Kqe/fesDKujk4lG4+hgVDQlytAUyqSgGqbiOGF6VXlsfKSTtIR3r265bEkttMqPHXBUJxxnuTB0lwGCNnlUNS8/p+TUHBxsWAR68lRTy9aPT9maaIGQex8eYTqA2PYUzVPjyGEEv2BfZ4SsBmTbqM7+XWR8ZPcHOrMFqVAArynobCN6vfU4X49DDW6kZhzuNbXC0Sz9sQchDlvglypfygn9wUXGRJYCKwgTQF3VUt3DT4WXkLGL03efSZxdVUEZel4b/FN+ayUnmW4zMRvjSwwa9GenMa8iPIHcGeTk7XqM="
+      }
+    ]
+  },
+  {
+    "role": "user",
+    "parts": [
+      {
+        "functionResponse": {
+          "name": "read",
+          "response": {
+            "result": "Read \"savingsBalance\" = \"Regular Savings\n        100123-00\n        $4,823.55\n        open\".\nURL: http://localhost:3100/members/100123\nTITLE: Member 100123\nHTTP: 200\nTEXT: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Member 100123 — Dana Whitfield Status active Opened 2015-03-11 SSN ***-**-4417 Share Type Account # Balance Status Regular Savings 100123-00 $4,823.55 open Checking 100123-70 $1,299.00 open Open Sub-Account\n\nELEMENTS:\n  f0:e0 link name=\"Open Sub-Account\"\n  f0:e1 row name=\"Status\" row=\"Statusactive Opened2015-03-11 SSN***-**-4417\"\n  f0:e2 row name=\"Share Type\" row=\"Share TypeAccount #BalanceStatus\"\n  f0:e3 row name=\"Regular Savings\" row=\"Regular Savings 100123-00 $4,823.55 open\"\n  f0:e4 row name=\"Checking\" row=\"Checking 100123-70 $1,299.00 open\""
+          }
+        }
+      }
+    ]
+  },
+  {
+    "role": "model",
+    "parts": [
+      {
+        "functionCall": {
+          "name": "finish",
+          "args": {
+            "outputs": [
+              {
+                "name": "savingsBalance",
+                "value": "$4,823.55"
+              }
+            ],
+            "successText": "Dana Whitfield",
+            "summary": "Looked up member 100123 and retrieved their Regular Savings balance of $4,823.55."
+          },
+          "id": "call_815134"
+        },
+        "thoughtSignature": "AY89a1+FonPeC7rYlSOOqTu8il+lrJdMdJqUzf/r8HvkqRrLZHucV+5YFb0IgTCLQoKEntE5szscThp/yg5NTaihu1GRTiiyas+sNf9N8t/xPtjqxMnSWTdCi1RuiF2dlJy3SIQ6ivYwZRWF0VcgAOab5KI462ikLTg8a8XGTWk9B2YMOTl7wFq03svXZbl8AclH2KCG4hWhMgliMwFoxj6IjLP6F/645dJiZlE8kFAvZO+T69imS0oPC/0ljkIHC9tKCAYX4NuASKafuT4jEIh8L7Brh+fPAiWJVrJWopAPwmvQjsk+ABXwuDrPDKdiBS2fE3V9l1M7x1K3r1s0o7w+h9nzKVaXJBxy3haCobmtaQdLiCUtkH27xy63btfFcRfIJfZFiCbtu8zCWhidVKbjrphwcAtXa1bDMj8oPgY="
+      }
+    ]
+  }
+]

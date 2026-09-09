@@ -1,0 +1,10 @@
+{
+  "status": "discovery_success",
+  "capabilityId": "open-member-subaccount",
+  "steps": 7,
+  "outputs": [
+    "newAccountNumber"
+  ],
+  "verifiedByReplay": true,
+  "runId": "disc-mttzwdad-4b67"
+}

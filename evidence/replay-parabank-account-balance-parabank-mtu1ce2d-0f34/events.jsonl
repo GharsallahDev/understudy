@@ -1,0 +1,8 @@
+{"ts":"t+0200","level":"info","msg":"Replay start: parabank-account-balance@1.0.0 (tenant parabank)","inputs":{"username":"[REDACTED]","password":"[REDACTED]","accountId":"40650"},"approval":"draft"}
+{"ts":"t+0201","level":"action","msg":"resolve s1 via css[0]","detail":"textbox"}
+{"ts":"t+0202","level":"action","msg":"type s1 ✓","detail":"Type the username into the login form"}
+{"ts":"t+0203","level":"action","msg":"resolve s2 via css[0]","detail":"textbox"}
+{"ts":"t+0204","level":"action","msg":"type s2 ✓","detail":"Type the password into the login form"}
+{"ts":"t+0205","level":"action","msg":"resolve s3 via role[0]","detail":"button \"Log In\""}
+{"ts":"t+0206","level":"action","msg":"click s3 ✓","detail":"Click the Log In button to log in"}
+{"ts":"t+0207","level":"info","msg":"Replay success","outputs":{"accountBalance":30050}}

@@ -1,0 +1,22 @@
+{
+  "runId": "drift-fail-mtu1bu5s-1e4d",
+  "capabilityId": "open-member-subaccount",
+  "capabilityVersion": "1.0.0",
+  "tenantId": "meridian",
+  "startedAt": "2026-09-09T11:48:36.263Z",
+  "endedAt": "2026-09-09T11:48:50.111Z",
+  "stepsAttempted": 6,
+  "evidenceDir": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-open-member-subaccount-drift-fail-mtu1bu5s-1e4d",
+  "notes": [
+    "drift: step s3 resolved via css[4] (recorded primary was role) — capability should be reviewed/re-recorded"
+  ],
+  "status": "failure",
+  "error": {
+    "condition": "LOCATOR_UNRESOLVED",
+    "disposition": "hard_failure",
+    "stepId": "s6",
+    "message": "Could not target \"button \"Continue to Review\"\" for step s6",
+    "expected": "button \"Continue to Review\"",
+    "observed": "LOCATOR_UNRESOLVED"
+  }
+}

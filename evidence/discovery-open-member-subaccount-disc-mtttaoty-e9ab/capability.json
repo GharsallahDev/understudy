@@ -1,0 +1,602 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "open-member-subaccount",
+  "version": "1.0.0",
+  "name": "Open member sub-account",
+  "description": "Open a new sub-account (share) for a member and reach the confirmation screen.",
+  "target": {
+    "appId": "meridian-servicing",
+    "surface": "web",
+    "vendorProduct": "CoreServicing",
+    "tenantId": "meridian",
+    "entryRoute": "/members",
+    "baseUrlEnv": "TARGET_BASE_URL"
+  },
+  "scope": {
+    "allowedRoutes": [
+      "/members",
+      "/members/:memberNumber",
+      "/members/:memberNumber/subaccounts/confirm",
+      "/members/:memberNumber/subaccounts/new",
+      "/members/:memberNumber/subaccounts/review"
+    ],
+    "allowedActions": [
+      "type",
+      "click",
+      "select"
+    ]
+  },
+  "inputs": [
+    {
+      "name": "memberNumber",
+      "type": "string",
+      "description": "The member number",
+      "required": true,
+      "pattern": "^\\d+$",
+      "example": "100123",
+      "sensitive": false
+    },
+    {
+      "name": "accountType",
+      "type": "string",
+      "description": "The share type to open",
+      "required": true,
+      "example": "Checking",
+      "sensitive": false
+    },
+    {
+      "name": "initialDeposit",
+      "type": "string",
+      "description": "Opening deposit amount",
+      "required": true,
+      "example": "25.00",
+      "sensitive": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "newAccountNumber",
+      "type": "string",
+      "description": "Extracted newAccountNumber",
+      "extraction": {
+        "target": {
+          "description": "status \"A new Checking sub-account has been opened for member 100123\"",
+          "strategies": [
+            {
+              "kind": "role",
+              "role": "status",
+              "exact": false
+            },
+            {
+              "kind": "relative",
+              "anchor": {
+                "text": "Sub-Account Opened",
+                "exact": false
+              },
+              "relation": "nearText",
+              "target": {
+                "role": "status",
+                "text": "A new Checking sub-account has been opened for member 100123"
+              }
+            }
+          ],
+          "confidence": 0.95,
+          "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > relative > relative. Stabilized for extraction: input-specific names removed."
+        },
+        "attribute": "text",
+        "transform": "trim",
+        "pattern": "(\\d+-\\d+)"
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "s1",
+      "intent": "Enter member number to search",
+      "action": "type",
+      "target": {
+        "description": "textbox \"Member Number\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "textbox",
+            "name": "Member Number",
+            "exact": false
+          },
+          {
+            "kind": "label",
+            "label": "Member Number",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Search",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "textbox"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "[name=\"memberNumber\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > label > relative > css."
+      },
+      "value": {
+        "from": "input",
+        "input": "memberNumber"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s2",
+      "intent": "Click Search button to find the member",
+      "action": "click",
+      "target": {
+        "description": "button \"Search\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Search",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Search",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Member Number",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "button"
+            }
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text > relative."
+      },
+      "checkpoint": {
+        "description": "URL is at /members/:memberNumber",
+        "urlIncludes": "/members/"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s3",
+      "intent": "Click Open Sub-Account link",
+      "action": "click",
+      "target": {
+        "description": "link \"Open Sub-Account\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Open Sub-Account",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Open Sub-Account",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Member 100123 — Dana Whitfield Statusactive Opened2015-03-11 SSN***-**-4417 Share TypeAccount #BalanceStatus Regular Sav",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "link"
+            }
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Member 100123 — Dana Whitfield",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "link",
+              "text": "Open Sub-Account"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "a[href*=\"members/100123/subaccounts/new\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text > relative > relative > css."
+      },
+      "checkpoint": {
+        "description": "URL is at /members/:memberNumber/subaccounts/new",
+        "urlIncludes": "/subaccounts/new"
+      },
+      "expectedConditions": [
+        {
+          "code": "VALIDATION_ERROR",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "minimum opening deposit",
+              "must be a valid",
+              "is required",
+              "please enter"
+            ],
+            "role": "alert"
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "VALIDATION_FAILED",
+          "note": "The app rejected the input. Surface it to the caller as a business outcome with the message.",
+          "maxRetries": 0
+        },
+        {
+          "code": "PERMISSION_DENIED",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "permission denied",
+              "not permitted",
+              "supervisor override"
+            ]
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "PERMISSION_DENIED",
+          "note": "The operation is not allowed for this member/role. A legitimate business outcome.",
+          "maxRetries": 0
+        }
+      ],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s4",
+      "intent": "Select Checking as the Account Type",
+      "action": "select",
+      "target": {
+        "description": "combobox \"Account Type\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "combobox",
+            "name": "Account Type",
+            "exact": false
+          },
+          {
+            "kind": "label",
+            "label": "Account Type",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Regular SavingsCheckingMoney MarketCertificate",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "combobox"
+            }
+          },
+          {
+            "kind": "css",
+            "css": "[name=\"type\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > label > relative > css."
+      },
+      "value": {
+        "from": "input",
+        "input": "accountType"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s5",
+      "intent": "Enter initial deposit amount",
+      "action": "type",
+      "target": {
+        "description": "textbox \"Initial Deposit\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "textbox",
+            "name": "Initial Deposit",
+            "exact": false
+          },
+          {
+            "kind": "label",
+            "label": "Initial Deposit",
+            "exact": false
+          },
+          {
+            "kind": "placeholder",
+            "placeholder": "0.00"
+          },
+          {
+            "kind": "css",
+            "css": "[name=\"deposit\"]"
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > label > placeholder > css."
+      },
+      "value": {
+        "from": "input",
+        "input": "initialDeposit"
+      },
+      "expectedConditions": [],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s6",
+      "intent": "Click Continue to Review button",
+      "action": "click",
+      "target": {
+        "description": "button \"Continue to Review\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Continue to Review",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Continue to Review",
+            "exact": false
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text."
+      },
+      "checkpoint": {
+        "description": "URL is at /members/:memberNumber/subaccounts/review",
+        "urlIncludes": "/subaccounts/review"
+      },
+      "expectedConditions": [
+        {
+          "code": "VALIDATION_ERROR",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "minimum opening deposit",
+              "must be a valid",
+              "is required",
+              "please enter"
+            ],
+            "role": "alert"
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "VALIDATION_FAILED",
+          "note": "The app rejected the input. Surface it to the caller as a business outcome with the message.",
+          "maxRetries": 0
+        },
+        {
+          "code": "PERMISSION_DENIED",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "permission denied",
+              "not permitted",
+              "supervisor override"
+            ]
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "PERMISSION_DENIED",
+          "note": "The operation is not allowed for this member/role. A legitimate business outcome.",
+          "maxRetries": 0
+        }
+      ],
+      "risk": "safe",
+      "timeoutMs": 10000
+    },
+    {
+      "id": "s7",
+      "intent": "Click Confirm & Open Account button",
+      "action": "click",
+      "target": {
+        "description": "button \"Confirm & Open Account\"",
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Confirm & Open Account",
+            "exact": false
+          },
+          {
+            "kind": "text",
+            "text": "Confirm & Open Account",
+            "exact": false
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Review New Sub-Account Member100123 Account TypeChecking",
+              "exact": false
+            },
+            "relation": "sameRow",
+            "target": {
+              "role": "button"
+            }
+          },
+          {
+            "kind": "relative",
+            "anchor": {
+              "text": "Review New Sub-Account",
+              "exact": false
+            },
+            "relation": "nearText",
+            "target": {
+              "role": "button",
+              "text": "Confirm & Open Account"
+            }
+          }
+        ],
+        "confidence": 0.95,
+        "robustnessNotes": "Primary rung is accessibility role+name (survives restyles & non-semantic wrappers); ladder: role > text > relative > relative."
+      },
+      "checkpoint": {
+        "description": "URL is at /members/:memberNumber/subaccounts/confirm",
+        "urlIncludes": "/subaccounts/confirm"
+      },
+      "expectedConditions": [
+        {
+          "code": "VALIDATION_ERROR",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "minimum opening deposit",
+              "must be a valid",
+              "is required",
+              "please enter"
+            ],
+            "role": "alert"
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "VALIDATION_FAILED",
+          "note": "The app rejected the input. Surface it to the caller as a business outcome with the message.",
+          "maxRetries": 0
+        },
+        {
+          "code": "PERMISSION_DENIED",
+          "disposition": "business_outcome",
+          "detect": {
+            "anyText": [
+              "permission denied",
+              "not permitted",
+              "supervisor override"
+            ]
+          },
+          "onDetect": "return_outcome",
+          "outcomeCode": "PERMISSION_DENIED",
+          "note": "The operation is not allowed for this member/role. A legitimate business outcome.",
+          "maxRetries": 0
+        }
+      ],
+      "risk": "risky",
+      "timeoutMs": 10000
+    }
+  ],
+  "successCondition": {
+    "description": "Reached: Successfully opened a new Checking sub-account for member 100123 with an initial deposit of 25.00, resulting in account number 100123-94.",
+    "anyText": [
+      "Sub-Account Opened"
+    ]
+  },
+  "globalConditions": [
+    {
+      "code": "SESSION_TIMEOUT",
+      "disposition": "escalate",
+      "detect": {
+        "anyText": [
+          "session has expired",
+          "please sign in again"
+        ]
+      },
+      "onDetect": "reauth",
+      "note": "Session/auth expired mid-run. Reauth is a platform concern; hand off for re-authentication, then retry the step.",
+      "maxRetries": 1
+    },
+    {
+      "code": "UNEXPECTED_DIALOG",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "System Notice",
+          "maintenance window"
+        ],
+        "role": "dialog",
+        "roleName": "System Notice"
+      },
+      "onDetect": "dismiss_and_retry",
+      "note": "A known interstitial can appear on any screen. Dismiss it and re-attempt the step.",
+      "maxRetries": 2,
+      "dismissText": "Acknowledge"
+    },
+    {
+      "code": "APP_ERROR",
+      "disposition": "hard_failure",
+      "detect": {
+        "anyText": [
+          "Application Error",
+          "an unexpected error occurred"
+        ],
+        "httpStatusGte": 500
+      },
+      "onDetect": "fail",
+      "note": "Server/app error. Stop and surface a debuggable failure.",
+      "maxRetries": 0
+    },
+    {
+      "code": "TRANSIENT_LOAD",
+      "disposition": "recoverable",
+      "detect": {
+        "anyText": [
+          "loading",
+          "please wait"
+        ]
+      },
+      "onDetect": "wait_and_retry",
+      "note": "Transient slow/partial load. Back off and retry the step.",
+      "maxRetries": 2
+    }
+  ],
+  "canonicalization": [
+    {
+      "concrete": "/members/100123",
+      "pattern": "/members/:memberNumber",
+      "boundTo": "memberNumber"
+    },
+    {
+      "concrete": "/members/100123/subaccounts/new",
+      "pattern": "/members/:memberNumber/subaccounts/new",
+      "boundTo": "memberNumber"
+    },
+    {
+      "concrete": "/members/100123/subaccounts/review",
+      "pattern": "/members/:memberNumber/subaccounts/review",
+      "boundTo": "memberNumber"
+    },
+    {
+      "concrete": "/members/100123/subaccounts/confirm",
+      "pattern": "/members/:memberNumber/subaccounts/confirm",
+      "boundTo": "memberNumber"
+    }
+  ],
+  "tenantOverrides": [],
+  "provenance": {
+    "discoveredBy": {
+      "model": "gemini-3.5-flash",
+      "provider": "google-vertex"
+    },
+    "discoveredAt": "2026-09-09T08:04:13.124Z",
+    "sourceRunId": "disc-mtttaoty-e9ab",
+    "transcriptDigest": "1f0e2b4bde2bfc5ae0528c98d1715ad808348350d85356452c8ef0de12fdde53",
+    "verifiedByReplay": true
+  },
+  "approval": {
+    "state": "draft"
+  }
+}

@@ -1,0 +1,11 @@
+{"ts":"t+0000","level":"info","msg":"Discovery start: \"Log in with the provided username and password. You will land on the Accounts Overview, which lists accounts and balances in a table. Find the row for the account whose number equals the \"accountId\" input, read that account's current Balance, and finish — returning it as an output named \"accountBalance\". The distinctive success text is \"Accounts Overview\".\"","entryRoute":"/parabank/index.htm","model":"gemini-3.5-flash","inputs":["username","password","accountId"]}
+{"ts":"t+0001","level":"action","msg":"type: Type the username into the login form"}
+{"ts":"t+0002","level":"action","msg":"type: Type the password into the login form"}
+{"ts":"t+0003","level":"action","msg":"click: Click the Log In button to authenticate"}
+{"ts":"t+0004","level":"action","msg":"click: Click Accounts Overview to refresh/load the accounts list"}
+{"ts":"t+0005","level":"action","msg":"click: Click Accounts Overview again to see if AJAX loaded the accounts"}
+{"ts":"t+0006","level":"action","msg":"navigate: Navigate directly to overview.htm to force a full reload"}
+{"ts":"t+0007","level":"action","msg":"read accountBalance","detail":"13344$441323.15$441323.15"}
+{"ts":"t+0008","level":"info","msg":"Discovery finish: Logged in successfully, navigated to Accounts Overview, located account 13344, and read its balance of $441323.15.","detail":"Accounts Overview"}
+{"ts":"t+0009","level":"info","msg":"Self-verifying: replaying the recorded artifact deterministically…"}
+{"ts":"t+0023","level":"info","msg":"Self-verify: success","detail":"artifact reproduces ✓"}

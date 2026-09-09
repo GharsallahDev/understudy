@@ -1,0 +1,26 @@
+{
+  "context": {
+    "goal": "Search a member by number and return their current Regular Savings balance.",
+    "capabilityId": "lookup-member-savings-balance",
+    "tenantId": "meridian",
+    "runId": "timeout-mtu1bek6-5f2f",
+    "currentUrl": "http://localhost:3100/members",
+    "stateSummary": "URL http://localhost:3100/members\nTitle: Sign In\nText: MeridianCU — Servicing Console Operator: OP-4471 | Tenant: meridian Your session has expired. Please sign in again. Operator Sign In Username Password Sign In Demo credentials: operator / demo-pass\nControls: textbox:\"Username\", textbox:\"Password\", button:\"Sign In\"",
+    "screenshotPath": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-timeout-mtu1bek6-5f2f/step-01-handoff.png",
+    "snapshotPath": "/Users/gharsallah/Desktop/interface.ai/understudy/evidence/replay-lookup-member-savings-balance-timeout-mtu1bek6-5f2f/handoff-0.html",
+    "reason": "SESSION_TIMEOUT: Session/auth expired mid-run. Reauth is a platform concern; hand off for re-authentication, then retry the step.",
+    "condition": "SESSION_TIMEOUT",
+    "stepId": "s1",
+    "stepIntent": "[REDACTED]"
+  },
+  "resolution": {
+    "resolvedBy": "scripted-operator",
+    "note": "manual step performed in live session, then resumed",
+    "capturedActions": [
+      {
+        "type": "navigate",
+        "url": "http://localhost:3100/login"
+      }
+    ]
+  }
+}
